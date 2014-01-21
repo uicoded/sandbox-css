@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>Cross Platform Fonts</title>
+		<meta charset="utf-8" />
+		<style>
+			body{
+				color: #666;
+				background-color: #fff;
+			}
+			dl { margin: 1em;}
+			dt h3 { color: #222; border-bottom: 2px solid #222;}
+			dl dt {font-size: 1.5em;}
+			dd p:hover {
+				font-size: 2em;
+				color: #000;
+			}
+			code {color: #4249AA;}
+			.sans-serif{font-family: sans-serif;}
+			.serif{font-family: serif;}
+			.monospace{font-family: monospace;}
+			.arial{font-family: Arial, Helvetica, sans-serif;}
+			.arialnarrow {font-family: "Arial Narrow", sans-serif;}
+			.impact{ font-family: Impact, Charcoal, sans-serif;}
+			.tahoma{font-family: Tahoma, Geneva, sans-serif;}
+			.centurygothic{font-family: "Century Gothic", sans-serif;}
+			.lucidasans{font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;}
+			.arialblack{font-family: "Arial Black", Gadget, sans-serif;}
+			.arialnarrow{font-family: "Arial Narrow", sans-serif;}
+			.verdana{font-family: Verdana, Geneva, sans-serif;}
+			.copperplategothic{font-family: "Copperplate / Copperplate Gothic Light", sans-serif;}
+			.gillsans{font-family: "Gill Sans / Gill Sans MT", sans-serif;}
+			.trebuchet{font-family: "Trebuchet MS", Helvetica, sans-serif;}
+			.timesroman{font-family: "Times New Roman", Times, serif;}
+			.georgia{font-family: Georgia, serif;}
+			.palatino{ font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;}
+			.courier{font-family: "Courier New", Courier, monospace;}
+		</style>
+	</head>
+	<body>
+
+<dl>
+
+	<dt><h3 class="serif">serif</h3></dt>
+	<dd>
+		<dl>
+			<dt class="timesromanu"><h4>Times New Roman</h4></dt>
+			<dd><code>{font-family: "Times New Roman&quot;, Times, serif;}</code></dd>
+			<dd>
+				<p class="timesroman">
+				abcdefghijklmnopqrstuvwxyz </br>
+				ABCDEFGHIJKLMNOPQRSTUVWXYZ </br>
+				!@#$%^&amp;*()-+_?&lt;&gt;;:&quot;&sect;&bdquo;&ldquo;&rdquo;&rsquo;&sbquo;&frac12;</br>
+				</p>
+			</dd>
+		</dl>	
+		<dl>
+			<dt class="georgia"><h4>Georgia</h4></dt>
+			<dd><code>{font-family: Georgia, serif;}</code></dd>
+			<dd>
+				<p class="georgia">
+				abcdefghijklmnopqrstuvwxyz </br>
+				ABCDEFGHIJKLMNOPQRSTUVWXYZ </br>
+				!@#$%^&amp;*()-+_?&lt;&gt;;:&quot;&sect;&bdquo;&ldquo;&rdquo;&rsquo;&sbquo;&frac12;</br>
+				</p>
+			</dd>
+		</dl>
+		<dl>
+			<dt class="palatino"><h4>Palatino Linotype</h4></dt>
+			<dd><code>{font-family: &quot;Palatino Linotype&quot;, &quot;Book Antiqua&quot;, Palatino, serif;}</code></dd>
+			<dd>
+				<p class="palatino">
+				abcdefghijklmnopqrstuvwxyz </br>
+				ABCDEFGHIJKLMNOPQRSTUVWXYZ </br>
+				!@#$%^&amp;*()-+_?&lt;&gt;;:&quot;&sect;&bdquo;&ldquo;&rdquo;&rsquo;&sbquo;&frac12;</br>
+				</p>
+			</dd>
+		</dl>
+	<!-- <dl>
+			<dt class=""><h4></h4></dt>
+			<dd><code>{}</code></dd>
+			<dd>
+				<p class="">
+				abcdefghijklmnopqrstuvwxyz </br>
+				ABCDEFGHIJKLMNOPQRSTUVWXYZ </br>
+				!@#$%^&amp;*()-+_?&lt;&gt;;:&quot;&sect;&bdquo;&ldquo;&rdquo;&rsquo;&sbquo;&frac12;</br>
+				</p>
+			</dd>
+		</dl> -->
+	</dd>
+
+	<dt><h3 class="sans-serif">sans-serif</h3></dt>
+	<dd>
+		<dl>
+			<dt class="arial"><h4>Arial</h4></dt>
+			<dd><code>{font-family: Arial, Helvetica, sans-serif;}</code></dd>
+			<dd>
+				<p class="arial">
+				abcdefghijklmnopqrstuvwxyz </br>
+				ABCDEFGHIJKLMNOPQRSTUVWXYZ </br>
+				!@#$%^&amp;*()-+_?&lt;&gt;;:&quot;&sect;&bdquo;&ldquo;&rdquo;&rsquo;&sbquo;&frac12;</br>
+				</p>
+			</dd>
+		</dl>
+		<dl>
+			<dt class="arialblack"><h4>Arial Black</h4></dt>
+			<dd><code>{font-family: &quot;Arial Black&quot;, Gadget, sans-serif;}</code></dd>
+			<dd>
+				<p class="arialblack">
+				abcdefghijklmnopqrstuvwxyz </br>
+				ABCDEFGHIJKLMNOPQRSTUVWXYZ </br>
+				!@#$%^&amp;*()-+_?&lt;&gt;;:&quot;&sect;&bdquo;&ldquo;&rdquo;&rsquo;&sbquo;&frac12;</br>
+				</p>
+			</dd>
+		</dl>
+		<dl>
+			<dt class="arialnarrow"><h4>Arial Narrow</h4></dt>
+			<dd><code>{font-family: &quot;Arial Narrow&quot;, sans-serif;}</code></dd>
+			<dd>
+				<p class="arialnarrow">
+				abcdefghijklmnopqrstuvwxyz </br>
+				ABCDEFGHIJKLMNOPQRSTUVWXYZ </br>
+				!@#$%^&amp;*()-+_?&lt;&gt;;:&quot;&sect;&bdquo;&ldquo;&rdquo;&rsquo;&sbquo;&frac12;</br>
+				</p>
+			</dd>
+		</dl>
+		<dl>
+			<dt class="impact"><h4>Impact</h4></dt>
+			<dd><code>{font-family: Impact, Charcoal, sans-serif;}</code></dd>
+			<dd>
+				<p class="impact">
+				abcdefghijklmnopqrstuvwxyz </br>
+				ABCDEFGHIJKLMNOPQRSTUVWXYZ </br>
+				!@#$%^&amp;*()-+_?&lt;&gt;;:&quot;&sect;&bdquo;&ldquo;&rdquo;&rsquo;&sbquo;&frac12;</br>
+				</p>
+			</dd>
+		</dl>
+		<dl>
+			<dt class="tahoma"><h4>Tahoma</h4></dt>
+			<dd><code>{font-family: Tahoma, Geneva, sans-serif;}</code></dd>
+			<dd>
+				<p class="tahoma">
+				abcdefghijklmnopqrstuvwxyz </br>
+				ABCDEFGHIJKLMNOPQRSTUVWXYZ </br>
+				!@#$%^&amp;*()-+_?&lt;&gt;;:&quot;&sect;&bdquo;&ldquo;&rdquo;&rsquo;&sbquo;&frac12;</br>
+				</p>
+			</dd>
+		</dl>
+		<dl>
+			<dt class="centurygothic"><h4>Century Gothic</h4></dt>
+			<dd><code>{font-family: Century Gothic, sans-serif;}</code></dd>
+			<dd>
+				<p class="centurygothic">
+				abcdefghijklmnopqrstuvwxyz </br>
+				ABCDEFGHIJKLMNOPQRSTUVWXYZ </br>
+				!@#$%^&amp;*()-+_?&lt;&gt;;:&quot;&sect;&bdquo;&ldquo;&rdquo;&rsquo;&sbquo;&frac12;</br>
+				</p>
+			</dd>
+		</dl>
+		<dl>
+			<dt class="lucidasans"><h4>Lucida Sans Unicode</h4></dt>
+			<dd><code>{font-family: &quot;Lucida Sans Unicode&quot;, &quot;Lucida Grande&quot;, sans-serif;}</code></dd>
+			<dd>
+				<p class="lucidasans">
+				abcdefghijklmnopqrstuvwxyz </br>
+				ABCDEFGHIJKLMNOPQRSTUVWXYZ </br>
+				!@#$%^&amp;*()-+_?&lt;&gt;;:&quot;&sect;&bdquo;&ldquo;&rdquo;&rsquo;&sbquo;&frac12;</br>
+				</p>
+			</dd>
+		</dl>
+		<dl>
+			<dt class="verdana"><h4>Verdana</h4></dt>
+			<dd><code>{font-family: Verdana, Geneva, sans-serif;}</code></dd>
+			<dd>
+				<p class="verdana">
+				abcdefghijklmnopqrstuvwxyz </br>
+				ABCDEFGHIJKLMNOPQRSTUVWXYZ </br>
+				!@#$%^&amp;*()-+_?&lt;&gt;;:&quot;&sect;&bdquo;&ldquo;&rdquo;&rsquo;&sbquo;&frac12;</br>
+				</p>
+			</dd>
+		</dl>
+		<dl>
+			<dt class="copperplategothic"><h4>Copperplate Gothic Light</h4></dt>
+			<dd><code>{font-family: &quot;Copperplate / Copperplate Gothic Light&quot;, sans-serif;}</code></dd>
+			<dd>
+				<p class="copperplategothic">
+				abcdefghijklmnopqrstuvwxyz </br>
+				ABCDEFGHIJKLMNOPQRSTUVWXYZ </br>
+				!@#$%^&amp;*()-+_?&lt;&gt;;:&quot;&sect;&bdquo;&ldquo;&rdquo;&rsquo;&sbquo;&frac12;</br>
+				</p>
+			</dd>
+		</dl>
+		<dl>
+			<dt class="gillsans"><h4>Gill Sans</h4></dt>
+			<dd><code>{font-family: &quot;Gill Sans / Gill Sans MT&quot;, sans-serif;}</code></dd>
+			<dd>
+				<p class="gillsans">
+				abcdefghijklmnopqrstuvwxyz </br>
+				ABCDEFGHIJKLMNOPQRSTUVWXYZ </br>
+				!@#$%^&amp;*()-+_?&lt;&gt;;:&quot;&sect;&bdquo;&ldquo;&rdquo;&rsquo;&sbquo;&frac12;</br>
+				</p>
+			</dd>
+		</dl>
+		<dl>
+			<dt class="trebuchet"><h4>Trebuchet MS</h4></dt>
+			<dd><code>{font-family: &quot;Trebuchet MS&quot;, Helvetica, sans-serif;}</code></dd>
+			<dd>
+				<p class="trebuchet">
+				abcdefghijklmnopqrstuvwxyz </br>
+				ABCDEFGHIJKLMNOPQRSTUVWXYZ </br>
+				!@#$%^&amp;*()-+_?&lt;&gt;;:&quot;&sect;&bdquo;&ldquo;&rdquo;&rsquo;&sbquo;&frac12;</br>
+				</p>
+			</dd>
+		</dl>
+	<!-- <dl>
+			<dt class=""><h4></h4></dt>
+			<dd><code>{}</code></dd>
+			<dd>
+				<p class="">
+				abcdefghijklmnopqrstuvwxyz </br>
+				ABCDEFGHIJKLMNOPQRSTUVWXYZ </br>
+				!@#$%^&amp;*()-+_?&lt;&gt;;:&quot;&sect;&bdquo;&ldquo;&rdquo;&rsquo;&sbquo;&frac12;</br>
+				</p>
+			</dd>
+		</dl> -->
+	</dd>
+
+	<dt><h3 class="monospace">monospace</h3></dt>
+	<dd>
+		<dl>
+			<dt class="courier"><h4>Courier New</h4></dt>
+			<dd><code>{font-family: &quot;Courier New&quot;, Courier, monospace;}</code></dd>
+			<dd>
+				<p class="courier">
+				abcdefghijklmnopqrstuvwxyz </br>
+				ABCDEFGHIJKLMNOPQRSTUVWXYZ </br>
+				!@#$%^&amp;*()-+_?&lt;&gt;;:&quot;&sect;&bdquo;&ldquo;&rdquo;&rsquo;&sbquo;&frac12;</br>
+				</p>
+			</dd>
+		</dl>	
+
+</dl>
+
+	</body>
+</html>

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>Ordered List with Numbered Bullets</title>
+		<meta charset="utf-8" />
+		<meta name="description" content="Ordered list with numbered bullets styled as circle">
+		<style type="text/css">
+			ol {
+			    counter-reset: li;
+			}
+			ol {
+			    margin: 0 0 20px 20px;
+			    padding: 0;
+			}
+			ol > li:before {
+			    background-color: #000;
+			    border-radius: 12px;
+			    color: #fff;
+			    content: counter(li, decimal);
+			    counter-increment: li;
+			    font: bold 11px/19px sans-serif;
+			    height: 19px;
+			    left: -25px;
+			    padding-top: 0;
+			    position: absolute;
+			    text-align: center;
+			    top: 1px;
+			    width: 19px;
+			}
+			ol > li {
+			    list-style: none outside none;
+			    margin-left: 30px;
+			    margin-right: 0;
+			    margin-top: 5px;
+			    padding-left: 10px;
+			    position: relative;
+			}
+		</style>
+	</head>
+	<body>
+		<ol>
+			<li>One</li>
+			<li>Two</li>
+			<li>Three</li>
+			<li>Four</li>
+			<li>Five</li>
+			<li>Six</li>
+		</ol>
+	</body>
+</html>
