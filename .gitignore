@@ -1,0 +1,27 @@
+# Dependencies
+node_modules
+
+#Compile
+dist
+
+# Cache
+.cache
+.tmp
+.sass-cache
+
+# IDEs
+/.idea
+.vscode/*
+!.vscode/extensions.json
+
+# Misc
+npm-debug.log
+yarn-error.log
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs
+*.log
