@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Centered Column Layout</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      .container {
+        text-align: center;
+        min-height: 100vh;
+        /* Ensures the container fills the viewport height */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        /* Full width for responsiveness */
+        box-sizing: border-box;
+        /* Include padding and border in element's total width and height */
+      }
+
+      header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .logo {
+        margin-bottom: 20px;
+        /* Space between logo and header */
+      }
+
+      .header {
+        font-size: 2em;
+        margin-bottom: 10px;
+        /* Space between header and subheader */
+      }
+
+      .subheader {
+        font-size: 1.5em;
+        color: gray;
+        /* Adjust color as needed */
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="container">
+      <header>
+        <img
+          src="../_public/img/image-placeholder_400x260.png"
+          alt="Logo"
+          class="logo"
+        />
+        <h1 class="header">Main Header</h1>
+        <h2 class="subheader">Sub Header</h2>
+      </header>
+    </section>
+  </body>
+</html>
