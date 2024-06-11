@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Single Col 60ch width using clamp()</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+      main {
+        /* width: clamp(16ch, 48ch, 56ch); */
+        /* width: clamp(min(10vw, 20rem), 300px, max(90vw, 55rem)); */
+        width: clamp(100px, calc(30% / 2rem + 10px), 900px);
+        /* font-size: clamp(0.5rem, 1rem + 1vw, 2rem); */
+        font-size: clamp(1.5rem, 2.5vw, 4rem);
+        margin-inline: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+      cupidatat non proident, sunt in culpa qu officia deserunt mollit anim id
+      est laborum.
+    </main>
+  </body>
+</html>

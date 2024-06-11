@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clamp fn 1</title>
+    <style>
+      .responsive {
+        font-size: clamp(1.5rem, 2.5vw, 3rem);
+      }
+    </style>
+  </head>
+  <body>
+    <p class="responsive">
+      The
+      <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/clamp"
+        ><code>clamp()</code></a
+      >
+      function ensures that the font size responds to changes in the viewport
+      width, making the text size adapt naturally as the screen size changes.
+      Bounds: The minimum and maximum values (1.5rem and 4rem, respectively)
+      provide bounds to prevent the text from becoming too small or too large.
+      Preferred Value Influence: The 2.5vw value allows the font size to scale
+      proportionally with the viewport width between the specified minimum and
+      maximum limits.
+    </p>
+    <h2>Units</h2>
+    <ul>
+      <li>
+        <code>1.5rem</code> - 1.5 times the root element's font size. If the
+        root font size is 16px, then 1.5rem equals 24px.
+      </li>
+      <li>
+        <code>2.5vw</code> means 2.5% of the viewport width. If the viewport
+        width is 1000px, then 2.5vw equals 25px.
+      </li>
+      <li>
+        <code>4rem</code> means 3 times the root element's font size. If the
+        root font size is 16px, then 4rem equals 48px.
+      </li>
+    </ul>
+  </body>
+</html>
