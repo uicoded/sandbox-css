@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>CSS Relative Units</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      .box {
+        margin: 10px;
+      }
+      .unit code {
+        font-weight: bold;
+        margin-right: 50px;
+      }
+      .unit .size {
+        display: block;
+        margin-block: 5px;
+        height: 15px;
+        width: 1px;
+        background-color: black;
+      }
+
+      #em .size {
+        width: 10em;
+      }
+      #ex .size {
+        width: 10ex;
+      }
+      #cap .size {
+        width: 10cap;
+      }
+      #ch .size {
+        width: 10ch;
+      }
+      #ic .size {
+        width: 10ic;
+      }
+      #rem .size {
+        width: 10rem;
+      }
+      #lh .size {
+        width: 10lh;
+      }
+      #rlh .size {
+        width: 10rlh;
+      }
+      #vw .size {
+        width: 10vw;
+      }
+      #vh .size {
+        width: 10vh;
+      }
+      #vi .size {
+        width: 10vi;
+      }
+      #vb .size {
+        width: 10vb;
+      }
+      #vmin .size {
+        width: 10vmin;
+      }
+      #vmax .size {
+        width: 10vmax;
+      }
+      #fr .size {
+        width: 10fr;
+      }
+
+      /* Add more units as needed */
+    </style>
+  </head>
+  <body>
+    <h1>CSS Values: Relative Lenghts</h1>
+
+    <p>
+      <a href="https://drafts.csswg.org/css-values/#relative-lengths"
+        >W3C CSS Relative Units</a
+      >
+      Applies 10 relative units for each type. Try to resize the viewport
+      (widht, height)
+    </p>
+
+    <div class="sizes">
+      <div class="box unit" id="em">
+        <code>em</code> font size of the element
+        <div class="size"></div>
+      </div>
+      <div class="box unit" id="ex">
+        <code>ex</code> x-height of the element’s font
+        <div class="size"></div>
+      </div>
+      <div class="box unit" id="cap">
+        <code>cap</code> cap height (the nominal height of capital letters) of
+        the element’s font
+        <div class="size"></div>
+      </div>
+      <div class="box unit" id="ch">
+        <code>ch</code> typical character advance of a narrow glyph in the
+        element’s font, as represented by the “0” (ZERO, U+0030) glyph
+        <div class="size"></div>
+      </div>
+      <div class="box unit" id="ic">
+        <code>ic</code> typical character advance of a fullwidth glyph in the
+        element’s font, as represented by the “水” (CJK water ideograph, U+6C34)
+        glyph
+        <div class="size"></div>
+      </div>
+      <div class="box unit" id="rem">
+        <code>rem</code> font size of the root element
+        <div class="size"></div>
+      </div>
+      <div class="box unit" id="lh">
+        <code>lh</code> line height of the element
+        <div class="size"></div>
+      </div>
+      <div class="box unit" id="rlh">
+        <code>rlh</code> line height of the root element
+        <div class="size"></div>
+      </div>
+      <div class="box unit" id="vw">
+        <code>vw</code> 1% of viewport’s width
+        <div class="size"></div>
+      </div>
+      <div class="box unit" id="vh">
+        <code>vh</code> 1% of viewport’s heightd
+        <div class="size"></div>
+      </div>
+      <div class="box unit" id="vi">
+        <code>vi</code> 1% of viewport’s size in the root element’s inline axis
+        <div class="size"></div>
+      </div>
+      <div class="box unit" id="vb">
+        <code>vb</code> 1% of viewport’s size in the root element’s block axis
+        <div class="size"></div>
+      </div>
+      <div class="box unit" id="vmin">
+        <code>vmin</code> 1% of viewport’s smaller dimension
+        <div class="size"></div>
+      </div>
+      <div class="box unit" id="vmax">
+        <code>vmax</code> 1% of viewport’s larger dimension
+        <div class="size"></div>
+      </div>
+    </div>
+  </body>
+</html>

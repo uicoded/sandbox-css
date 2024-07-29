@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS em vs rem</title>
+    <style>
+      html {
+        font-size: 16px;
+      }
+
+      section.em {
+        font-size: calc(1em + 4px); /* 1em == 16px becuase the parent (html) */
+      }
+      section.em h2 {
+        font-size: 1.5em; /* 1.5 * 20 = 30 px;*/
+      }
+
+      section.rem {
+        font-size: calc(1rem + 4px); /* 1rem == 16px always*/
+      }
+      section.rem h2 {
+        font-size: 1.5rem; /* 1.5 * 16 = 24 px;*/
+      }
+      section span.test {
+        font-size: 1rem; /* 1rem == 16px always */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>em vs rem</h1>
+    <p>
+      The <code>rem</code> unit is relative to the font size of the root element
+    </p>
+    <p><code></code></p>
+    <br />
+    <h2>Subheader with default size</h2>
+    <p>
+      Normal text paragraph (16px) Lorem ipsum dolor sit amet, consectetur
+      adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+      magna aliqua.
+    </p>
+    <hr />
+    <section class="em">
+      <h2>em Subheader (30px)</h2>
+      <p>
+        Larger text (20px) paragraph inside a section. Lorem ipsum dolor sit
+        amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua.
+      </p>
+    </section>
+    <hr />
+    <section class="rem">
+      <h2>rem Subheader (24px)</h2>
+      <p>
+        Larger text (20px) paragraph inside a section. Lorem ipsum dolor sit
+        amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua.
+        <span class="test">Small check I am 16px again</span>
+      </p>
+    </section>
+  </body>
+</html>
