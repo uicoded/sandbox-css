@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>color-scheme</title>
+    <style>
+      :root {
+        /* color-scheme: dark; */ /* Should switch to dark mode*/
+        /* color-scheme: light dark; */
+
+        color-scheme: var(--color-scheme, light);
+
+        /* CSS only switcher */
+        &:has(#color_scheme option[value="dark"]:checked) {
+          --color-scheme: dark;
+          /* any additional dark styles */
+          a {
+            color: red;
+          }
+        }
+
+        &:has(#color_scheme option[value="light"]:checked) {
+          --color-scheme: light;
+          body {
+            color: #222;
+            background-color: #ccc;
+          }
+          p {
+            background-color: #fff;
+          }
+        }
+
+        &:has(#color_scheme option[value="light dark"]:checked) {
+          --color-scheme: light dark;
+          section {
+            background-color: pink;
+          }
+        }
+
+        &:has(#color_scheme option[value="only dark"]:checked) {
+          --color-scheme: only dark;
+        }
+
+        &:has(#color_scheme option[value="only light"]:checked) {
+          --color-scheme: only light;
+        }
+
+        &:has(#color_scheme option[value="normal"]:checked) {
+          --color-scheme: normal;
+        }
+      }
+
+      body {
+        max-width: 120ch;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>color-scheme</h1>
+    <p>
+      User agents are not required to support any particular color scheme, so
+      only using a single keyword, such as color-scheme: dark, to indicate a
+      required color scheme is still not guaranteed to have any effect on the
+      rendering of the element.
+    </p>
+    <p>
+      A page that responds to user preferences for light or dark display by
+      using the prefers-color-scheme media feature to alter the colors it uses
+      can easily opt the browser-controlled UI (scrollbars, inputs, etc) to
+      match with a simple global declaration: <br />
+      <code> :root { color-scheme: light dark; } </code>
+    </p>
+    <p>
+      If a page cannot reasonably accommodate all color schemes, such as for
+      branding or theatrical reasons, color-scheme can still indicate which
+      color schemes the page can support, causing the UI to match.
+    </p>
+    <p>
+      If the page’s color scheme is primarily light, the following will indicate
+      that explicitly: <br />
+      <code> :root { color-scheme: light; } </code>
+    </p>
+    <p>
+      While if the page is primarily dark, indicating that explicitly will make
+      the page look more coherent as well: <br />
+      <code> :root { color-scheme: dark; } </code>
+    </p>
+    <p>However, it is better to support both color schemes, of course.</p>
+    <p>
+      <a href="https://drafts.csswg.org/css-color-adjust/#color-scheme-prop"
+        >W3C</a
+      >
+      <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme"
+        >MDN</a
+      >
+    </p>
+    <section>
+      <select name="color_scheme" id="color_scheme">
+        <option value="normal">normal</option>
+        <option value="light">light</option>
+        <option value="dark">dark</option>
+        <option value="light dark">light dark</option>
+        <option value="only light">only light</option>
+        <option value="only dark">only dark</option>
+      </select>
+    </section>
+  </body>
+</html>
