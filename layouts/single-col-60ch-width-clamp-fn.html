@@ -10,9 +10,14 @@
         font-family: Arial, sans-serif;
       }
       main {
-        /* width: clamp(16ch, 48ch, 56ch); */
+        width: clamp(16ch, 48ch, 56ch);
         /* width: clamp(min(10vw, 20rem), 300px, max(90vw, 55rem)); */
-        width: clamp(100px, calc(30% / 2rem + 10px), 900px);
+        /* ↓ This seems not to work
+        width: clamp(
+          100px,
+          calc(30% / 2rem + 10px),
+          900px
+        ); */
         /* font-size: clamp(0.5rem, 1rem + 1vw, 2rem); */
         font-size: clamp(1.5rem, 2.5vw, 4rem);
         margin-inline: auto;
