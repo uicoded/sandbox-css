@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@font-face</title>
+    <style media="screen, print">
+      @font-face {
+        font-family: "Bitstream Vera Serif Bold";
+
+        /* First test with system installed font */
+        /* src: local("Bitstream Vera Serif Bold"); */
+
+        /* Second test local font file and system font uninstalled or disabled */
+        /* src: url("./../_public/fonts/VeraSeBd.ttf"); */
+
+        /* Third test with fallback */
+        src: local("Bitstream Vera Serif Bold"),
+          url("./../_public/fonts/VeraSeBd.ttf");
+      }
+      body {
+        font-family: "Bitstream Vera Serif Bold", serif;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>@font-face</h1>
+    <p>This is Bitstream Vera Serif Bold.</p>
+    <p>
+      The font being hosted locally. First looking at system installed fonts
+      then localhost. Uses CSS
+      <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face"
+        >@font-face</a
+      >
+      at rule.
+    </p>
+  </body>
+</html>
