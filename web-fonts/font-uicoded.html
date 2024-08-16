@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>uicoded Selected Font</title>
+    <meta charset="utf-8" />
+    <style>
+      body {
+        color: #666;
+        background-color: #fff;
+      }
+      dl {
+        margin: 1em;
+      }
+      dt h3 {
+        color: #222;
+        border-bottom: 2px solid #222;
+      }
+      dl dt {
+        font-size: 1.5em;
+      }
+      dd p:hover {
+        font-size: 2em;
+        color: #000;
+      }
+      code {
+        color: #4249aa;
+      }
+      .sans-serif {
+        font-family: sans-serif;
+      }
+      .serif {
+        font-family: serif;
+      }
+      .monospace {
+        font-family: monospace;
+      }
+      .uicoded {
+        font-family: "Helvetica Neue", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Arial,
+          sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      }
+    </style>
+  </head>
+  <body>
+    <h1>uicoded Selected Font</h1>
+    <p>Acording to <a href="https://uicoded.com/">uicoded</a>.</p>
+    <dl>
+      <dt><h3 class="sans-serif">sans-serif</h3></dt>
+      <dd>
+        <dl>
+          <dt class="uicoded"><h4>Helvetica Neue</h4></dt>
+          <dd>
+            <code
+              >{font-family: "Helvetica Neue", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Arial,
+              sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"}</code
+            >
+          </dd>
+          <dd>
+            <p class="uicoded">
+              abcdefghijklmnopqrstuvwxyz <br />
+              ABCDEFGHIJKLMNOPQRSTUVWXYZ <br />
+              0123456789<br />
+              Il1O0<br />
+              !@#$%^&amp;*()-+_?&lt;&gt;;:&quot;&sect;&bdquo;&ldquo;&rdquo;&rsquo;&sbquo;&frac12;<br />
+            </p>
+          </dd>
+        </dl>
+      </dd>
+    </dl>
+  </body>
+</html>
