@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Cross Platform Fonts</title>
+    <meta charset="utf-8" />
+    <style>
+      body {
+        color: #666;
+        background-color: #fff;
+      }
+      dl {
+        margin: 1em;
+      }
+      dt h3 {
+        color: #222;
+        border-bottom: 2px solid #222;
+      }
+      dl dt {
+        font-size: 1.5em;
+      }
+      dd p:hover {
+        font-size: 2em;
+        color: #000;
+      }
+      code {
+        color: #4249aa;
+      }
+      ul.site-list {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+      ul.site-list {
+        padding: 8px 12px;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+      }
+      ul.site-list a:hover,
+      ul.site-list a:focus {
+        background-color: #f0f0f0;
+        outline: 2px solid #4a90e2;
+      }
+
+      .sans-serif {
+        font-family: sans-serif;
+      }
+      .serif {
+        font-family: serif;
+      }
+      .monospace {
+        font-family: monospace;
+      }
+      .plex-serif {
+        font-family: "IBM Plex Serif", serif;
+        /* font-family: IBM Plex Mono,Menlo,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier,monospace; */
+        /* font-family: "IBM Plex Serif",Georgia,serif; */
+      }
+      .crimson-text {
+        font-family: "Crimson Text", serif;
+      }
+      .inter {
+        font-family: Inter, sans-serif;
+        /* font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; */
+        /* font-family: Switzer,Basic Commercial,sans-serif; */
+        /* font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"; /* https://www.prisma.io/ */
+      }
+      .roboto {
+        font-family: Roboto, sans-serif;
+      }
+      .montserrat {
+        font-family: Montserrat, sans-serif;
+        /* font-family: Montserrat, Helvetica, sans-serif; */
+      }
+      .helvetica-new {
+        font-family: Helvetica, sans-serif;
+        /* font-family: "Helvetica Neue LT Std", Helvetica, Arial, sans-serif; */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Best Fonts</h1>
+    <p>Acording to <a href="https://htmlburger.com/blog/user-interface-fonts/">html Burger</a>.</p>
+    <dl>
+      <dt><h3 class="serif">serif</h3></dt>
+      <dd>
+        <dl>
+          <dt class="plex-serif"><h4>IBM Plex</h4></dt>
+          <dd>
+            <code>{font-family: "IBM Plex Serif", serif}</code>
+          </dd>
+          <dd>
+            <p class="plex-serif">
+              abcdefghijklmnopqrstuvwxyz <br />
+              ABCDEFGHIJKLMNOPQRSTUVWXYZ <br />
+              0123456789<br />
+              Il1O0<br />
+              !@#$%^&amp;*()-+_?&lt;&gt;;:&quot;&sect;&bdquo;&ldquo;&rdquo;&rsquo;&sbquo;&frac12;<br />
+            </p>
+            <ul class="site-list plex-serif">
+              <li><a href="https://www.hamishsmyth.com/">Hamish Smyth</a></li>
+              <li><a href="https://www.paulrand.design/writing/books/">Paul Rand</a></li>
+              <li><a href="https://www.wearemobilefirst.com/">We Are Mobile First</a></li>
+            </ul>
+          </dd>
+          <dt class="crimson-text"><h4>Crimson Text</h4></dt>
+          <dd>
+            <code>{font-family: "Crimson Text", serif;}</code>
+          </dd>
+          <dd>
+            <p class="crimson-text">
+              abcdefghijklmnopqrstuvwxyz <br />
+              ABCDEFGHIJKLMNOPQRSTUVWXYZ <br />
+              0123456789<br />
+              Il1O0<br />
+              !@#$%^&amp;*()-+_?&lt;&gt;;:&quot;&sect;&bdquo;&ldquo;&rdquo;&rsquo;&sbquo;&frac12;<br />
+            </p>
+            <ul class="site-list crimson-text">
+              <li><a href="https://theonlybandever.com/">Alexisonfire</a></li>
+            </ul>
+          </dd>
+        </dl>
+      </dd>
+
+      <dt><h3 class="sans-serif">sans-serif</h3></dt>
+      <dd>
+        <dl>
+          <dt class="inter"><h4>Inter</h4></dt>
+          <dd><code>{font-family: Inter, sans-serif;}</code></dd>
+          <dd>
+            <p class="inter">
+              abcdefghijklmnopqrstuvwxyz <br />
+              ABCDEFGHIJKLMNOPQRSTUVWXYZ <br />
+              0123456789<br />
+              Il1O0<br />
+              !@#$%^&amp;*()-+_?&lt;&gt;;:&quot;&sect;&bdquo;&ldquo;&rdquo;&rsquo;&sbquo;&frac12;<br />
+            </p>
+            <ul class="site-list inter">
+              <li><a href="https://www.prisma.io/">Prisma.io</a></li>
+              <li><a href="https://houseofwise.co/">House of Wise</a></li>
+              <li><a href="https://www.wearemobilefirst.com/">We Are Mobile First</a></li>
+            </ul>
+          </dd>
+        </dl>
+        <dl>
+          <dt class="roboto"><h4>Roboto</h4></dt>
+          <dd>
+            <code>{font-family: "Roboto", sans-serif;}</code>
+          </dd>
+          <dd>
+            <p class="roboto">
+              abcdefghijklmnopqrstuvwxyz <br />
+              ABCDEFGHIJKLMNOPQRSTUVWXYZ <br />
+              0123456789<br />
+              Il1O0<br />
+              !@#$%^&amp;*()-+_?&lt;&gt;;:&quot;&sect;&bdquo;&ldquo;&rdquo;&rsquo;&sbquo;&frac12;<br />
+            </p>
+            <ul class="site-list roboto">
+              <li><a href="https://smartkaya.com/">kaya</a></li>
+            </ul>
+          </dd>
+        </dl>
+        <dl>
+          <dt class="montserrat"><h4>Montserrat</h4></dt>
+          <dd>
+            <code>{font-family: Montserrat, sans-serif;}</code>
+          </dd>
+          <dd>
+            <p class="montserrat">
+              abcdefghijklmnopqrstuvwxyz <br />
+              ABCDEFGHIJKLMNOPQRSTUVWXYZ <br />
+              0123456789<br />
+              Il1O0<br />
+              !@#$%^&amp;*()-+_?&lt;&gt;;:&quot;&sect;&bdquo;&ldquo;&rdquo;&rsquo;&sbquo;&frac12;<br />
+            </p>
+            <ul class="site-list montserrat">
+              <li><a href="https://gabriel-cuallado.com/">Gabriel Cuallado</a></li>
+            </ul>
+          </dd>
+        </dl>
+        <!-- Todo there is more -->
+        <dl>
+          <dt class="helvetica-new"><h4>Helvetica Neue</h4></dt>
+          <dd>
+            <code>{font-family: Helvetica, sans-serif;}</code>
+          </dd>
+          <dd>
+            <p class="helvetica-new">
+              abcdefghijklmnopqrstuvwxyz <br />
+              ABCDEFGHIJKLMNOPQRSTUVWXYZ <br />
+              0123456789<br />
+              Il1O0<br />
+              !@#$%^&amp;*()-+_?&lt;&gt;;:&quot;&sect;&bdquo;&ldquo;&rdquo;&rsquo;&sbquo;&frac12;<br />
+            </p>
+            <ul class="site-list helvetica-new">
+              <li><a href="https://www.chaumet.com/">Chaumet</a></li>
+              <li><a href="https://sundayapp.com/">Sunday</a></li>
+              <li><a href="https://www.khn-office.com/">khn office</a></li>
+            </ul>
+          </dd>
+        </dl>
+      </dd>
+
+      <dt><h3 class="monospace">monospace</h3></dt>
+      <dd>
+        <dl>
+          <dt class="courier"><h4>Courier New</h4></dt>
+          <dd>
+            <code>{font-family: &quot;Courier New&quot;, Courier, monospace;}</code>
+          </dd>
+          <dd>
+            <p class="courier">
+              abcdefghijklmnopqrstuvwxyz <br />
+              ABCDEFGHIJKLMNOPQRSTUVWXYZ <br />
+              0123456789<br />
+              Il1O0<br />
+              !@#$%^&amp;*()-+_?&lt;&gt;;:&quot;&sect;&bdquo;&ldquo;&rdquo;&rsquo;&sbquo;&frac12;<br />
+            </p>
+          </dd>
+        </dl>
+      </dd>
+    </dl>
+  </body>
+</html>
