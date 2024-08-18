@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Page with Sticky Nav and Skip Link</title>
+    <style>
+      :root {
+        --font-size-base: 16px;
+        --font-size-h1: 2.5rem;
+        --font-size-h2: 2rem;
+        --font-size-p: 1rem;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        font-size: var(--font-size-base);
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+      }
+
+      header {
+        background-color: #333;
+        color: #fff;
+        padding: 1rem;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      nav ul {
+        list-style-type: none;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+      }
+
+      nav ul li {
+        margin: 0.5rem;
+      }
+
+      nav ul li a {
+        color: #fff;
+        text-decoration: none;
+        font-size: var(--font-size-p);
+      }
+
+      .intro {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f4f4f4;
+        text-align: center;
+        padding: 1rem;
+      }
+
+      .intro h1 {
+        font-size: var(--font-size-h1);
+      }
+
+      .content {
+        padding: 2rem;
+      }
+
+      .content h2 {
+        font-size: var(--font-size-h2);
+        margin-bottom: 1rem;
+      }
+
+      .content p {
+        font-size: var(--font-size-p);
+        margin-bottom: 1rem;
+      }
+
+      footer {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 1rem;
+        font-size: var(--font-size-p);
+      }
+
+      /* Tablet Styles */
+      @media screen and (max-width: 768px) {
+        :root {
+          --font-size-base: 14px;
+          --font-size-h1: 2.2rem;
+          --font-size-h2: 1.8rem;
+        }
+      }
+
+      /* Mobile Styles */
+      @media screen and (max-width: 480px) {
+        :root {
+          --font-size-base: 12px;
+          --font-size-h1: 2rem;
+          --font-size-h2: 1.6rem;
+        }
+
+        nav ul {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .intro {
+          height: auto;
+          min-height: 100vh;
+        }
+      }
+
+      /* ... (rest of the previous styles) ... */
+
+      .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 0;
+        background: #000;
+        color: white;
+        padding: 8px;
+        z-index: 100;
+        transition: top 0.3s;
+      }
+
+      .skip-link:focus {
+        top: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header>
+      <nav>
+        <ul>
+          <li><a href="#intro">Intro</a></li>
+          <li><a href="#content">Content</a></li>
+          <li><a href="#footer">Footer</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      <section id="intro" class="intro">
+        <h1>Welcome to Our Responsive Website</h1>
+      </section>
+
+      <section id="content" class="content">
+        <h2>What Changed</h2>
+        <p>
+          Create html page with header main footer sections. Add sticky navigation to the header. Add two sections into
+          main. First section is intro which takes 100vh.
+        </p>
+        <p>Make this page responsive for tablet and phone factor. Use responsive text.</p>
+        <p>Add skip to main content for accessibility</p>
+      </section>
+    </main>
+
+    <footer id="footer">
+      <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

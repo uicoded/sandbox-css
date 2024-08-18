@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sticky Nav with Sections</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+      }
+
+      header {
+        background-color: #333;
+        color: #fff;
+        padding: 1rem;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      nav ul {
+        list-style-type: none;
+        display: flex;
+        justify-content: space-around;
+      }
+
+      nav ul li a {
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .intro {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f4f4f4;
+      }
+
+      .content {
+        padding: 2rem;
+      }
+
+      footer {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="#intro">Intro</a></li>
+          <li><a href="#content">Content</a></li>
+          <li><a href="#footer">Footer</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section id="intro" class="intro">
+        <h1>Welcome to Our Website</h1>
+      </section>
+
+      <section id="content" class="content">
+        <h2>Main Content</h2>
+        <p>
+          Create html page with header main footer sections. Add sticky navigation to the header. Add two sections into
+          main. First section is intro which takes 100vh.
+        </p>
+      </section>
+    </main>
+
+    <footer id="footer">
+      <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
