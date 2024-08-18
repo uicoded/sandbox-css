@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sticky Nav with Intro</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+      }
+
+      header {
+        background-color: #333;
+        color: #fff;
+        padding: 1rem;
+        /* position: sticky; */
+        position: fixed; /* this will not push the content down, but add padding to the main*/
+        /* Fixed positioning takes the element out of the normal document flow.
+        The width of a fixed element is determined by its content by default, not by its parent container */
+        width: 100vw;
+        top: 0;
+        z-index: 100;
+      }
+
+      nav ul {
+        list-style-type: none;
+        display: flex;
+        justify-content: space-around;
+      }
+
+      nav ul li a {
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .intro {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f4f4f4;
+      }
+
+      .content {
+        padding: 2rem;
+      }
+
+      footer {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="intro">
+        <h1>Welcome to Our Website</h1>
+      </section>
+      <section class="content">
+        <h2>About Us</h2>
+        <p>This is the second section of the main content. You can add more information here.</p>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

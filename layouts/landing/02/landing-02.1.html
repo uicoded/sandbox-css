@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sticky Nav with Intro</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+      }
+
+      header {
+        background-color: #333;
+        color: #fff;
+        padding: 1rem;
+        /* position: sticky; */
+        position: fixed; /* this will not push the content down, but add padding to the main*/
+        /* Fixed positioning takes the element out of the normal document flow.
+        The width of a fixed element is determined by its content by default, not by its parent container */
+        width: 100vw;
+        top: 0;
+        z-index: 100;
+      }
+
+      nav ul {
+        list-style-type: none;
+        display: flex;
+        justify-content: space-around;
+      }
+
+      nav ul li a {
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .intro {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f4f4f4;
+      }
+
+      .content {
+        padding: 2rem;
+      }
+
+      .content section {
+        margin: 2rem;
+      }
+      footer {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 1rem;
+      }
+
+      label {
+        display: inline-block;
+        width: 10ch;
+      }
+
+      /* To have the three sections (About, Services, and Contact) slide in from the left
+      with easing when they come into view upon scrolling, we can use a combination of
+       CSS animations and JavaScript's Intersection Observer API. */
+      @keyframes slideInFromLeft {
+        0% {
+          transform: translateX(-100%);
+          opacity: 0;
+        }
+        100% {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      .content section {
+        opacity: 0;
+        transform: translateX(-100%);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+        visibility: hidden; /* Hide the section initially */
+      }
+
+      .content section.visible {
+        animation: slideInFromLeft 0.5s ease forwards;
+        opacity: 1;
+        transform: translateX(0);
+        visibility: visible; /* Make the section visible when it's in view */
+      }
+      /* End of animation */
+    </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", (event) => {
+        console.log("DOM fully loaded and parsed");
+        const sections = document.querySelectorAll(".content section");
+        console.log("Found sections:", sections.length);
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              console.log("Section intersecting:", entry.target.id, entry.isIntersecting);
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.01,
+            rootMargin: "0px 0px -10% 0px", // Trigger slightly before the section comes into view
+          }
+        );
+
+        sections.forEach((section) => {
+          observer.observe(section);
+          console.log("Observing section:", section.id);
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="intro">
+        <h1>Welcome to Our Website</h1>
+      </section>
+      <section class="content">
+        <section id="about">
+          <h2>About Us</h2>
+          <p>
+            Create html page with header main footer sections. Add sticky navigation to the header. Add two sections
+            into main. First section is intro which takes 100vh.
+          </p>
+          <p>Inside of .content add three sections with dummy text for About, Services and Contact</p>
+          <p>Have the 3 sections slide in from left with easing and upon scrolling into view</p>
+        </section>
+        <section id="services">
+          <h2>Our Services</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
+          </p>
+        </section>
+        <section id="contact">
+          <h2>Contact Us</h2>
+          <p>Have questions or want to get in touch? Fill out the form below:</p>
+          <form action="#" method="post">
+            <div class="form-group">
+              <label for="name">Name:</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+            <div class="form-group">
+              <label for="message">Message:</label>
+              <textarea id="message" name="message" rows="4" required></textarea>
+            </div>
+            <button type="submit">Send Message</button>
+          </form>
+        </section>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
