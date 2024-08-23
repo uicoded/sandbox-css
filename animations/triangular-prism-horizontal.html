@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rotating Partner Title</title>
+    <style>
+      .prism-container {
+        perspective: 1000px;
+        width: 200px;
+        height: 200px;
+        margin: 100px auto;
+      }
+
+      .prism {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transform-style: preserve-3d;
+        animation: rotate 8s infinite linear;
+      }
+
+      .prism-face {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        background: rgba(0, 123, 255, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3em;
+        color: white;
+        border: 2px solid white;
+      }
+
+      .prism-face:nth-child(1) {
+        transform: rotateX(120deg) translateZ(100px);
+      }
+      .prism-face:nth-child(2) {
+        transform: rotateX(240deg) translateZ(100px);
+      }
+      .prism-face:nth-child(3) {
+        transform: rotateX(0deg) translateZ(100px);
+      }
+
+      @keyframes rotate {
+        0% {
+          transform: rotateX(360deg);
+        }
+        100% {
+          transform: rotateX(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="prism-container">
+      <div class="prism">
+        <div class="prism-face">First</div>
+        <div class="prism-face">Second</div>
+        <div class="prism-face">Third</div>
+      </div>
+    </div>
+  </body>
+</html>
