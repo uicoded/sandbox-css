@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Design Partner</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+      }
+      h1 {
+        font-size: 3rem;
+        color: #333;
+      }
+      .typing {
+        border-right: 5px solid #333;
+        padding-right: 5px;
+        animation: blink 0.7s step-end infinite;
+      }
+      @keyframes blink {
+        from,
+        to {
+          border-color: transparent;
+        }
+        50% {
+          border-color: red;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Your <span id="changing-word" class="typing">design</span> partner</h1>
+
+    <script>
+      const words = ["design", "development", "research"];
+      let currentIndex = 0;
+      let letterIndex = 0;
+      let currentWord = "";
+      let isDeleting = false;
+
+      function changeWord() {
+        const wordElement = document.getElementById("changing-word");
+
+        if (isDeleting) {
+          currentWord = words[currentIndex].substring(0, letterIndex - 1);
+          letterIndex--;
+        } else {
+          currentWord = words[currentIndex].substring(0, letterIndex + 1);
+          letterIndex++;
+        }
+
+        wordElement.textContent = currentWord;
+
+        if (!isDeleting && letterIndex === words[currentIndex].length) {
+          isDeleting = true;
+          setTimeout(changeWord, 1500); // Wait before deleting
+        } else if (isDeleting && letterIndex === 0) {
+          isDeleting = false;
+          currentIndex = (currentIndex + 1) % words.length;
+          setTimeout(changeWord, 500); // Wait before typing next word
+        } else {
+          setTimeout(changeWord, isDeleting ? 50 : 100); // Typing speed
+        }
+      }
+
+      changeWord();
+    </script>
+  </body>
+</html>
