@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vanilla Scroll</title>
+    <style>
+      nav a {
+        display: inline-block;
+        width: 50px;
+        text-decoration: none;
+        border: 1px solid #ccc;
+      }
+      nav,.scroll-container {
+        display: block;
+        margin: 0 auto;
+        text-align: center;
+      }
+      nav {
+        width: 339px;
+        padding: 5px;
+        border: 1px solid black;
+      }
+      .scroll-container {
+        width: 350px;
+        height: 200px;
+        overflow-y: scroll;
+        scroll-behavior: smooth;
+        border: 1px solid black;
+      }
+      .scroll-page {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        font-size: 5em;
+        border-top: 2px solid gray;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Vanilla Scroll</h1>
+    <nav>
+      <a href="#page-1">1</a>
+      <a href="#page-2">2</a>
+      <a href="#page-3">3</a>
+    </nav>
+    <main>
+      <p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-behavior">scroll-behavior</a>  CSS property
+        sets the behavior for a scrolling box when scrolling is triggered by the navigation or CSSOM scrolling APIs.</p>
+      <p>Note that any other scrolls, such as those performed by the user, are not affected by this property.
+         When this property is specified on the root element, it applies to the viewport instead.
+         This property specified on the body element will not propagate to the viewport.
+        User agents are allowed to ignore this property.</p>
+
+      <p><code>smooth</code> a user-agent-defined easing function over a user-agent-defined period of time.
+        User agents should follow platform conventions, if any.</p>
+      <p>
+        <pre><code>
+          /* Keyword values */
+          scroll-behavior: auto;
+          scroll-behavior: smooth;
+
+          /* Global values */
+          scroll-behavior: inherit;
+          scroll-behavior: initial;
+          scroll-behavior: revert;
+          scroll-behavior: revert-layer;
+          scroll-behavior: unset;
+        </code></pre>
+      </p>
+      <div class="scroll-container">
+        <div class="scroll-page" id="page-1">1</div>
+        <div class="scroll-page" id="page-2">2</div>
+        <div class="scroll-page" id="page-3">3</div>
+      </div>
+    </main>
+  </body>
+</html>
