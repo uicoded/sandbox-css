@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Letter by Letter Animation</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap");
+
+      svg {
+        font-family: "Inter", sans-serif;
+        font-size: 24px;
+        width: 100%;
+        height: auto;
+      }
+
+      .letter {
+        fill: none;
+        stroke: black;
+        stroke-width: 2;
+        stroke-dasharray: 300;
+        stroke-dashoffset: 300;
+      }
+    </style>
+  </head>
+  <body>
+    <svg viewBox="0 0 300 50">
+      <!-- SVG paths for the word "Process" in Inter font -->
+      <path id="P" class="letter" d="M10,30 L10,10 L30,10 Q50,10 50,30 Q50,50 30,50 L10,50 Z" />
+      <path id="r" class="letter" d="M60,50 L60,30 Q60,20 80,20 L80,50" />
+      <path id="o" class="letter" d="M100,50 Q100,20 120,20 Q140,20 140,50 Q140,80 120,80 Q100,80 100,50 Z" />
+      <path id="c" class="letter" d="M160,50 Q160,20 180,20 Q200,20 200,50" />
+      <path id="e" class="letter" d="M220,50 Q220,20 240,20 Q260,20 260,50 Q260,80 240,80 Q220,80 220,50 Z" />
+      <path id="s1" class="letter" d="M280,20 Q280,50 300,50 Q320,50 320,80" />
+      <path id="s2" class="letter" d="M280,80 Q280,50 300,50 Q320,50 320,20" />
+    </svg>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const letters = document.querySelectorAll(".letter");
+        let delay = 0;
+
+        letters.forEach((letter, index) => {
+          setTimeout(() => {
+            letter.style.transition = "stroke-dashoffset 1s ease-in-out";
+            letter.style.strokeDashoffset = "0";
+          }, delay);
+          delay += 1000; // 1 second delay between letters
+        });
+      });
+    </script>
+  </body>
+</html>

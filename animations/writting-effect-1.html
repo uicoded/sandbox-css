@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SVG Text Animation</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap");
+
+      svg {
+        font-family: "Inter", sans-serif;
+        font-size: 24px;
+      }
+
+      .text-animation {
+        fill: none;
+        stroke: #000;
+        stroke-dasharray: 220;
+        stroke-dashoffset: 220;
+        animation: draw 4s linear forwards;
+      }
+
+      @keyframes draw {
+        0% {
+          stroke-dashoffset: 220;
+        }
+        100% {
+          stroke-dashoffset: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <svg width="200" height="50">
+      <text x="0" y="30" class="text-animation">Process</text>
+    </svg>
+  </body>
+</html>
