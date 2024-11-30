@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Relative to parent</title>
+    <style>
+      body * {
+        border: 3px solid black;
+      }
+
+      #halfWidthContainer {
+        width: 50%;
+      }
+
+      .half {
+        width: 600px;
+      }
+
+      .quarter {
+        width: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1 class="half">Half-width of parent element.</h1>
+      <h1 class="quarter">Quarter-width of parent element.</h1>
+    </div>
+
+    <div id="halfWidthContainer">
+      <h1 class="half">Half-width of parent element.</h1>
+      <h1 class="quarter">Quarter-width of parent element.</h1>
+    </div>
+  </body>
+</html>
