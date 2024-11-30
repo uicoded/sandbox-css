@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.js"></script>
+    <style>
+      div h3 {
+        font-size: 3em;
+        text-align: center;
+      }
+
+      #colorBox {
+        height: 100px;
+        width: 100%;
+        background-color: rgb(0, 0, 0);
+        border-radius: 10px;
+      }
+
+      #sliderBox {
+        margin: 10px 20px;
+      }
+
+      .slider {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 25px;
+        border: 1px solid black;
+        border-radius: 20px;
+        margin: 0px 10px 0px 10px;
+        background: #d3d3d3;
+        outline: none;
+        opacity: 0.7;
+        -webkit-transition: 0.2s;
+        transition: opacity 0.2s;
+      }
+
+      .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+
+      .slider::-moz-range-thumb {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+
+      #redSlider::-webkit-slider-thumb {
+        background: rgb(255, 0, 0);
+      }
+
+      #redSlider::-moz-range-thumb {
+        background: rgb(255, 0, 0);
+      }
+
+      #greenSlider::-webkit-slider-thumb {
+        background: rgb(0, 255, 0);
+      }
+
+      #greenSlider::-moz-range-thumb {
+        background: rgb(0, 255, 0);
+      }
+
+      #blueSlider::-webkit-slider-thumb {
+        background: rgb(0, 0, 255);
+      }
+
+      #blueSlider::-moz-range-thumb {
+        background: rgb(0, 0, 255);
+      }
+
+      #alphaSlider::-webkit-slider-thumb {
+        background: rgb(0, 0, 0);
+      }
+
+      #alphaSlider::-moz-range-thumb {
+        background: rgb(0, 0, 0);
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h3>
+        <code>rgba(<span id="r">0</span>,<span id="g">0</span>,<span id="b">0</span>,<span id="a">1</span>)</code>
+      </h3>
+      <div id="colorBox"></div>
+      <div id="sliderBox">
+        <input type="range" value="0" min="0" max="255" class="slider" id="redSlider" />
+        <input type="range" value="0" min="0" max="255" class="slider" id="greenSlider" />
+        <input type="range" value="0" min="0" max="255" class="slider" id="blueSlider" />
+        <input type="range" value="100" min="0" max="100" class="slider" id="alphaSlider" />
+      </div>
+    </div>
+    <script>
+      // get DOM nodes
+      let redSlider = document.getElementById("redSlider");
+      let greenSlider = document.getElementById("greenSlider");
+      let blueSlider = document.getElementById("blueSlider");
+      let alphaSlider = document.getElementById("alphaSlider");
+      let redOutput = document.getElementById("r");
+      let greenOutput = document.getElementById("g");
+      let blueOutput = document.getElementById("b");
+      let alphaOutput = document.getElementById("a");
+      let colorBox = document.getElementById("colorBox");
+
+      let setColor = function () {
+        colorBox.style.backgroundColor =
+          "rgba(" +
+          redSlider.value +
+          "," +
+          greenSlider.value +
+          "," +
+          blueSlider.value +
+          "," +
+          alphaSlider.value / 100 +
+          ")";
+      };
+
+      // input event listeners
+      redSlider.oninput = function () {
+        redOutput.innerHTML = this.value;
+        setColor();
+      };
+
+      greenSlider.oninput = function () {
+        greenOutput.innerHTML = this.value;
+        setColor();
+      };
+
+      blueSlider.oninput = function () {
+        blueOutput.innerHTML = this.value;
+        setColor();
+      };
+
+      alphaSlider.oninput = function () {
+        alphaOutput.innerHTML = this.value / 100;
+        setColor();
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>hsla slider</title>
+    <style>
+      div h3 {
+        font-size: 3em;
+        text-align: center;
+      }
+
+      label p {
+        margin: 0px 10px 0px 10px;
+      }
+
+      #colorBox {
+        height: 100px;
+        width: 100%;
+        background-color: hsla(180, 50%, 50%, 1);
+        border-radius: 10px;
+      }
+
+      #sliderBox {
+        margin: 10px 20px;
+      }
+
+      .slider {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 25px;
+        border: 1px solid black;
+        border-radius: 20px;
+        margin: 0px 0px 10px 0px;
+        background: #d3d3d3;
+        outline: none;
+        opacity: 0.7;
+        -webkit-transition: 0.2s;
+        transition: opacity 0.2s;
+
+        display: inline-block;
+        float: right;
+      }
+
+      .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+
+      .slider::-moz-range-thumb {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+
+      #hueSlider::-webkit-slider-thumb {
+        background: rgb(0, 0, 0);
+      }
+
+      #hueSlider::-moz-range-thumb {
+        background: rgb(0, 0, 0);
+      }
+
+      #saturationSlider::-webkit-slider-thumb {
+        background: rgb(0, 0, 0);
+      }
+
+      #saturationSlider::-moz-range-thumb {
+        background: rgb(0, 0, 0);
+      }
+
+      #lightnessSlider::-webkit-slider-thumb {
+        background: rgb(0, 0, 0);
+      }
+
+      #lightnessSlider::-moz-range-thumb {
+        background: rgb(0, 0, 0);
+      }
+
+      #alphaSlider::-webkit-slider-thumb {
+        background: rgb(0, 0, 0);
+      }
+
+      #alphaSlider::-moz-range-thumb {
+        background: rgb(0, 0, 0);
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h3>
+        <code>hsla(<span id="h">180</span>,<span id="s">50</span>%,<span id="l">50</span>%,<span id="a">1</span>)</code>
+      </h3>
+      <div id="colorBox"></div>
+      <div id="sliderBox">
+        <label for="hueSlider"><p>Hue</p></label
+        ><input type="range" value="180" min="0" max="360" class="slider" id="hueSlider" />
+        <label for="saturationSlider"><p>Saturation</p></label
+        ><input type="range" value="50" min="0" max="100" class="slider" id="saturationSlider" />
+        <label for="lightnessSlider"><p>Lightness</p></label
+        ><input type="range" value="50" min="0" max="100" class="slider" id="lightnessSlider" />
+        <label for="alphaSlider"><p>Alpha</p></label
+        ><input type="range" value="100" min="0" max="100" class="slider" id="alphaSlider" />
+      </div>
+    </div>
+    <script>
+      // get DOM nodes
+      let hueSlider = document.getElementById("hueSlider");
+      let saturationSlider = document.getElementById("saturationSlider");
+      let lightnessSlider = document.getElementById("lightnessSlider");
+      let alphaSlider = document.getElementById("alphaSlider");
+      let hueOutput = document.getElementById("h");
+      let saturationOutput = document.getElementById("s");
+      let lightnessOutput = document.getElementById("l");
+      let alphaOutput = document.getElementById("a");
+      let colorBox = document.getElementById("colorBox");
+
+      let setColor = function () {
+        colorBox.style.backgroundColor =
+          "hsla(" +
+          hueSlider.value +
+          "," +
+          saturationSlider.value +
+          "%," +
+          lightnessSlider.value +
+          "%," +
+          alphaSlider.value / 100 +
+          ")";
+      };
+
+      // input event listeners
+      hueSlider.oninput = function () {
+        hueOutput.innerHTML = this.value;
+        setColor();
+      };
+
+      saturationSlider.oninput = function () {
+        saturationOutput.innerHTML = this.value;
+        setColor();
+      };
+
+      lightnessSlider.oninput = function () {
+        lightnessOutput.innerHTML = this.value;
+        setColor();
+      };
+
+      alphaSlider.oninput = function () {
+        alphaOutput.innerHTML = this.value / 100;
+        setColor();
+      };
+    </script>
+  </body>
+</html>
