@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Text Sizing with ems</title>
+    <style>
+      div {
+        font-size: 200%;
+        background-color: aliceblue;
+        position: relative;
+
+        &::before {
+          content: "200% parent";
+          position: absolute;
+          top: 0;
+          right: 0;
+          font-size: 0.8rem;
+          color: #666;
+        }
+      }
+
+      .small {
+        font-size: 0.5rem;
+      }
+
+      .normal {
+        font-size: 1rem;
+      }
+
+      .big {
+        font-size: 3rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Text sizing with rem</h1>
+    <p>1 rem is equivalent to the font-size of <strong>the root</strong> element of the entire HTML document.</p>
+
+    <p class="small">Small Text</p>
+    <p class="normal">Normal Text</p>
+    <p class="big">Big Text</p>
+    <div>
+      <p class="small">Small Text</p>
+      <p class="normal">Normal Text</p>
+      <p class="big">Big Text</p>
+    </div>
+  </body>
+</html>

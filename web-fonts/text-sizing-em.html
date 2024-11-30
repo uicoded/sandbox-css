@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Text Sizing with ems</title>
+    <style>
+      div {
+        font-size: 200%;
+        background-color: aliceblue;
+        position: relative;
+
+        &::before {
+          content: "200% parent";
+          position: absolute;
+          top: 0;
+          right: 0;
+          font-size: 0.8rem;
+          color: #666;
+        }
+      }
+
+      .small {
+        font-size: 0.5em;
+      }
+
+      .normal {
+        font-size: 1em;
+      }
+
+      .big {
+        font-size: 3em;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Text sizing with em</h1>
+    <p>1 em is equivalent to the font-size of the element’s parent.</p>
+
+    <p class="small">Small Text</p>
+    <p class="normal">Normal Text</p>
+    <p class="big">Big Text</p>
+    <div>
+      <p class="small">Small Text</p>
+      <p class="normal">Normal Text</p>
+      <p class="big">Big Text</p>
+    </div>
+  </body>
+</html>
