@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Padding width</title>
+    <style>
+      p {
+        background-color: beige;
+        padding-bottom: 10%;
+        /* remember default browser style: margin bottom */
+      }
+      div {
+        background-color: aliceblue;
+        padding-bottom: 10%;
+        border: 1px solid red;
+      }
+    </style>
+  </head>
+  <body>
+    <p style="width: 100px">100px</p>
+    <p style="width: 200px">200px</p>
+    <p style="width: 300px">300px</p>
+
+    <div style="width: 100px">100px</div>
+    <div style="width: 200px">200px</div>
+    <div style="width: 300px">300px</div>
+
+    <h2>Explanation</h2>
+    <pre>
+      This suppose
+
+      A &lt;p&gt; with width:100px will have 10px padding (10% of 100px)
+      A &lt;p&gt; with width:200px will have 20px padding (10% of 200px)
+      A &lt;p&gt; with width:300px will have 30px padding (10% of 300px)
+      The same calculations apply to the &lt;div&gt;elements - the padding is there, just potentially less obvious visually due to the layout flow.
+    </pre>
+  </body>
+</html>
