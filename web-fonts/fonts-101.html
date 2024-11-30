@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fonts 101</title>
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+      section {
+        background-color: beige;
+        margin: 2em;
+        padding: 0.2em 2em 0.5em;
+        border-radius: 0.4em;
+      }
+      section h2 {
+        position: relative;
+        top: -0.2em;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Fonts 101</h1>
+
+    <section>
+      <h2>Setting a font style</h2>
+      <p>
+        If a font name contains spaces, then it must be wrapped in quotation marks (e.g. "Times New Roman") in order to
+        be rendered properly.
+      </p>
+      <code>
+        <pre>
+      .Arial {
+        font-family: Arial;
+      }
+
+      .TimesNewRoman {
+        font-family: "Times New Roman";
+      }
+
+      .Verdana {
+        font-family: Verdana;
+      }
+        </pre>
+      </code>
+    </section>
+
+    <section>
+      <h2>Web safe fonts</h2>
+      <p>
+        When a browser loads a web page, it will apply the font specified in <code>font-family</code> only if the font
+        is loaded on the system.
+      </p>
+      <p>
+        Running the same web page on a Windows desktop, an Android mobile device, or a Mac OS X laptop may yield
+        different results because each platform has a different set of fonts loaded by default.
+      </p>
+      <p>
+        One way around this is to use web-safe fonts. <a href="./web-safe-fonts.html">Web-safe fonts</a> are a set of
+        fonts which are consistent across platforms, meaning you can expect to achieve the same result no matter what
+        device your user is on. Common fonts that are safe across most platforms include:
+      </p>
+      <ul>
+        <li>Arial</li>
+        <li>Times/Times New Roman</li>
+        <li>Helvetica</li>
+        <li>Courier New/Courier</li>
+        <li>Verdana</li>
+        <li>Georgia</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Font stacking</h2>
+      <p>
+        The <code>font-family</code> property accepts multiple font names, separated by commas. This defines a priority
+        fallback for fonts not available on the system.
+      </p>
+      <code>
+        <pre>
+        p {
+          font-family: "Helvetica Neue", Helvetica, sans-serif;
+        }
+        </pre>
+      </code>
+      <p>
+        It is best practice to specify fonts from the one you most desire to a generic one supported by all systems. In
+        the example above, the last font listed is referred to as a
+        <a href="generic-fonts.html">generic-family</a> font.
+      </p>
+    </section>
+    <section>
+      <h2>Including custom fonts</h2>
+      <p>
+        If you are not satisfied with being restricted to web-safe fonts, it is indeed possible to load additional fonts
+        when a browser downloads your web page. <a href="https://fonts.google.com/">Google Fonts</a> allows you to load
+        additional fonts by embedding a CSS stylesheet in the <code>&lt;head&gt;</code> element.
+      </p>
+      <p>
+        Besides free Google, there are other paid font services, such as <a href="https://fonts.adobe.com/">Typekit</a>,
+        <a href="https://www.myfonts.com/">MyFonts.com</a>, and<a href="https://typenetwork.com//">TypeNetwork</a>.
+      </p>
+      <p>
+        Additional fonts should be used judiciously to ensure your user’s experience isn’t compromised by increased load
+        time.
+      </p>
+      <h3>Custom fonts via @font-face CSS</h3>
+      <p>
+        Using <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face"><code>@font-face</code></a>
+        <a href="/en-US/docs/Web/CSS">CSS</a> <a href="/en-US/docs/Web/CSS/At-rule">at-rule</a> to load
+        <a href="css-font-face-at-rule-local-font.html">local</a> or
+        <a href="css-font-face-at-rule.html">remote</a> font files.
+      </p>
+    </section>
+  </body>
+</html>
