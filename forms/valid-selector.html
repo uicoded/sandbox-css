@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML Form with All Input Types</title>
+    <style>
+      label {
+        display: block;
+        margin-top: .5em;
+      }
+      input {
+        background-color: ivory;
+        border: 1px solid gray;
+        border-radius: 5px;
+      }
+
+      input:valid {
+        border: 1px solid green;
+        outline: 2px solid lightgreen;
+        /* accent-color: gold; WHAT IS THIS? */
+      }
+
+      input:invalid {
+        border: 1px solid red;
+        outline: 2px solid lightsalmon;
+      }
+
+      /* Check marks  */
+      input + span {
+        position: relative;
+      }
+
+      input + span::before {
+        position: absolute;
+        right: -20px;
+        top: 5px;
+      }
+
+      input:invalid + span::before {
+        content: "✖";
+        color: red;
+      }
+
+      input:valid + span::before {
+        content: "✓";
+        color: green;
+      }
+
+
+    </style>
+  </head>
+  <body>
+    <h2>All input types - no values</h2>
+    <p>
+      Validity set by <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/setCustomValidity"><code>HTMLInputElement.setCustomValidity()</code></a>
+      <form name="inputTypes">
+        <label>Text: <input type="text" name="text" /><span></span></label>
+        <label>Password: <input type="password" name="password" /><span></span></label>
+        <label>Email: <input type="email" name="email" /><span></span></label>
+        <label>Number: <input type="number" name="number" /><span></span></label>
+        <label>Tel: <input type="tel" name="tel" /><span></span></label>
+        <label>URL: <input type="url" name="url" /><span></span></label>
+        <label>Search: <input type="search" name="search" /><span></span></label>
+        <label>Date: <input type="date" name="date" /><span></span></label>
+        <label>Time: <input type="time" name="time" /><span></span></label>
+        <label>Datetime-local: <input type="datetime-local" name="datetime" /><span></span></label>
+        <label>Month: <input type="month" name="month" /><span></span></label>
+        <label>Week: <input type="week" name="week" /><span></span></label>
+        <label>Color: <input type="color" name="color" /><span></span></label>
+        <label>Checkbox: <input type="checkbox" name="checkbox" /><span></span></label>
+        <label>Radio: <input type="radio" name="radio" /><span></span></label>
+        <label>Range: <input type="range" name="range" min="0" max="100" /><span></span></label>
+        <label>File: <input type="file" name="file" /><span></span></label>
+        <label>Hidden: <input type="hidden" name="hidden" value="hiddenValue" /><span></span></label>
+        <label>Submit: <input type="submit" value="Submit" /><span></span></label>
+        <label>Reset: <input type="reset" value="Reset" /><span></span></label>
+        <label>Button: <input type="button" value="Click Me" /><span></span></label>
+      </form>
+    </p>
+    <p>
+      <button type="button" onclick="setValidity(true)">Make Valid</button>
+      <button type="button" onclick="setValidity(false)">Make Invalid</button>
+    </p>
+    <h2>Input with values</h2>
+    <p>
+      <form name="">
+        <label for="name">Name:</label>
+        <input id="name" name="name" type="text" value="" required />
+
+        <label for="email">Email Address:</label>
+        <input id="email" name="email" type="email" value="na@me@example.com" />
+
+        <label for="secret">Secret Code: (lower case letters)</label>
+        <input id="secret" name="secret" type="text" value="test" pattern="[a-z]+" />
+
+        <label for="age">Your age: (18+)</label>
+        <input id="age" name="age" type="number" value="5" min="18" />
+
+        <label><input name="tos" type="checkbox" required checked /> - Do you agree to ToS?</label>
+      </form>
+    </p>
+    <script>
+      function setValidity(valid) {
+          document.forms.inputTypes.querySelectorAll("input").forEach(input => {
+              input.setCustomValidity(valid ? "" : "Invalid input");
+              input.reportValidity(); // Shows the validation message
+          });
+      }
+  </script>
+  </body>
+</html>
