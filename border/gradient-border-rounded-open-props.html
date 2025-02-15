@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>open props</title>
+    <style>
+      @import "https://unpkg.com/open-props" layer(design.system);
+      @import "https://unpkg.com/open-props/normalize.min.css" layer(demo.support);
+
+      @layer demo {
+        .rounded-border-gradient {
+          padding: 1em;
+          inline-size: var(--size-content-1);
+          aspect-ratio: var(--ratio-widescreen);
+          border: solid var(--size-2) transparent;
+          border-radius: var(--radius-4);
+          background: linear-gradient(var(--surface-1) 0 0) padding-box, var(--gradient-1) border-box;
+        }
+      }
+
+      @layer demo.support {
+        body {
+          display: grid;
+          place-content: center;
+          padding: var(--size-5);
+          gap: var(--size-5);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p><a href="https://codepen.io/uicoded/pen/vEYBEJE">CodePen</a></p>
+    </main>
+  </body>
+</html>

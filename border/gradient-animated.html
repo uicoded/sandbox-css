@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animated Gradient</title>
+    <style>
+      @property --border-angle {
+        syntax: "<angle>";
+        inherits: true;
+        initial-value: 0turn;
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        display: grid;
+        place-items: center;
+        background: #1a1a1a;
+        font-family: system-ui, -apple-system, sans-serif;
+      }
+
+      .animated-box {
+        width: 60vmin;
+        height: 50vmin;
+        display: grid;
+        place-content: center;
+        color: #ccc;
+        position: relative;
+        border-radius: 16px;
+      }
+
+      .animated-box::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 16px;
+        padding: 5px;
+        background: linear-gradient(var(--border-angle), #57ec99 0%, #1371ef 33%, #cc1eae 67%, #fccc05 100%);
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        animation: snake-rotate 3s linear infinite;
+      }
+
+      @keyframes snake-rotate {
+        to {
+          --border-angle: 360deg;
+        }
+      }
+
+      .animated-box:hover::before {
+        animation-play-state: paused;
+      }
+
+      .content {
+        position: relative;
+        z-index: 1;
+        /* background: #1a1a1a; */
+        width: 100%;
+        height: 100%;
+        display: grid;
+        place-items: center;
+        border-radius: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="animated-box">
+      <div class="content">Animated Gradient</div>
+    </div>
+  </body>
+</html>

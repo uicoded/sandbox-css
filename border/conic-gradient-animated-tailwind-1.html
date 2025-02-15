@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animated Conic Gradient</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @property --border-angle {
+        syntax: "<angle>";
+        inherits: true;
+        initial-value: 0turn;
+      }
+
+      .animated-box {
+        --border-angle: 0turn;
+        --main-bg: conic-gradient(from var(--border-angle), #223344, #112233 5%, #112233 60%, #223344 95%);
+        --gradient-border: conic-gradient(from var(--border-angle), transparent 25%, #0088ff, #ff0033 99%, transparent);
+        background: var(--main-bg) padding-box, var(--gradient-border) border-box, var(--main-bg) border-box;
+        animation: border-rotate 3s linear infinite;
+      }
+
+      .animated-box:hover {
+        animation-play-state: paused;
+      }
+
+      @keyframes border-rotate {
+        to {
+          --border-angle: 1turn;
+        }
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-[#223] grid place-items-center font-sans">
+    <div
+      class="animated-box w-[60vmin] h-[50vmin] grid place-content-center text-white text-shadow border-[5px] border-transparent rounded-[2em]"
+    >
+      <span class="drop-shadow">Conic Gradient Animated</span>
+    </div>
+  </body>
+</html>

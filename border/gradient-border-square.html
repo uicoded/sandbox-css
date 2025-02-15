@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gradient Border Box</title>
+    <style>
+      .gradient-border {
+        display: inline-block;
+        border: 6px solid;
+        border-radius: 20px; /* 👈 UNSUPPORTED */
+        border-image: linear-gradient(45deg, #ff6b6b, #f8e473) 1;
+        padding: 10px;
+        background-color: aqua;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="gradient-border">This is a box with a gradient border.</div>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        background: #bbb;
+      }
+
+      .gradient-border {
+        width: 100px;
+        height: 100px;
+        background: #ccc;
+        position: relative;
+        border: 20px solid transparent;
+        background-clip: padding-box;
+      }
+
+      .gradient-border::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        right: -2px;
+        bottom: -2px;
+        left: -2px;
+        background: linear-gradient(to right, #57ec99 0%, #1371ef 33%, #cc1eae 67%, #fccc05 100%);
+        z-index: -1;
+        border-radius: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="gradient-border">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</div>
+  </body>
+</html>
