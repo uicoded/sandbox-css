@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FormData</title>
+    <style>
+      label {
+        display: block;
+        margin-top: .5em;
+      }
+      input {
+        background-color: ivory;
+        border: 1px solid gray;
+        border-radius: 5px;
+      }
+
+      input:valid {
+        border: 1px solid green;
+        outline: 2px solid lightgreen;
+        /* accent-color: gold; WHAT IS THIS? */
+      }
+
+      input:invalid {
+        border: 1px solid red;
+        outline: 2px solid lightsalmon;
+      }
+
+      /* Check marks  */
+      input + span {
+        position: relative;
+      }
+
+      input + span::before {
+        position: absolute;
+        right: -20px;
+        top: 5px;
+      }
+
+      input:invalid + span::before {
+        content: "✖";
+        color: red;
+      }
+
+      input:valid + span::before {
+        content: "✓";
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>FormData</h1>
+    <p>The <a href="https://developer.mozilla.org/en-US/docs/Web/API/FormData">FormData</a> interface provides
+       a way to construct a set of key/value pairs representing form fields and their values,
+        which can be sent using the fetch(), XMLHttpRequest.send() or navigator.sendBeacon() methods.
+         It uses the same format a form would use if the encoding type were set to "multipart/form-data".
+    </p>
+    <p>
+      <form name="userForm">
+        <label for="name">Name:</label>
+        <input id="name" name="name" type="text" value="" required />
+
+        <label for="email">Email Address:</label>
+        <input id="email" name="email" type="email" value="na@me@example.com" />
+
+        <label for="secret">Secret Code: (lower case letters)</label>
+        <input id="secret" name="secret" type="text" value="test" pattern="[a-z]+" />
+
+        <label for="age">Your age: (18+)</label>
+        <input id="age" name="age" type="number" value="5" min="18" />
+
+        <label><input name="tos" type="checkbox" required checked /> - Do you agree to ToS?</label>
+
+        <button type="submit">Submit</button> (See the console)
+      </form>
+    </p>
+    <script>
+      document.forms.userForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const formData = new FormData(this);
+        for (const [name, value] of formData.entries()) {
+          console.log(`${name}: ${value}`);
+        }
+      });
+    </script>
+  </body>
+</html>
