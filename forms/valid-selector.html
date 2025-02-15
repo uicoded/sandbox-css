@@ -51,11 +51,12 @@
     </style>
   </head>
   <body>
+    <h1>Validity CSS and JS manipulation</h1>
     <h2>All input types - no values</h2>
     <p>
       Validity set by <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/setCustomValidity"><code>HTMLInputElement.setCustomValidity()</code></a>
       and style by <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:valid">:valid</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:invalid">:invalid</a>
-      <form name="inputTypes">
+      <form name="form1">
         <label>Text: <input type="text" name="text" /><span></span></label>
         <label>Password: <input type="password" name="password" /><span></span></label>
         <label>Email: <input type="email" name="email" /><span></span></label>
@@ -80,12 +81,14 @@
       </form>
     </p>
     <p>
-      <button type="button" onclick="setValidity(true)">Make Valid</button>
-      <button type="button" onclick="setValidity(false)">Make Invalid</button>
+      <button type="button" onclick="setValidity('form1', true)">Make Valid</button>
+      <button type="button" onclick="setValidity('form1', false)">Make Invalid</button>
     </p>
-    <h2>Input with values</h2>
+
+    <h2>Selected input types - with values</h2>
+    <p>NOTE: You can mark valid as invalid.</p>
     <p>
-      <form name="">
+      <form name="form2">
         <label for="name">Name:</label>
         <input id="name" name="name" type="text" value="" required />
 
@@ -101,9 +104,13 @@
         <label><input name="tos" type="checkbox" required checked /> - Do you agree to ToS?</label>
       </form>
     </p>
+    <p>
+      <button type="button" onclick="setValidity('form2', true)">Make Valid</button>
+      <button type="button" onclick="setValidity('form2', false)">Make Invalid</button>
+    </p>
     <script>
-      function setValidity(valid) {
-          document.forms.inputTypes.querySelectorAll("input").forEach(input => {
+      function setValidity(formName, valid) {
+          document.forms[formName].querySelectorAll("input").forEach(input => {
               input.setCustomValidity(valid ? "" : "Invalid input");
               input.reportValidity(); // Shows the validation message
           });
