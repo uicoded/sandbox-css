@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sticky Header with Sections</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+        font-family: Arial, sans-serif;
+      }
+
+      .sticky-header {
+        position: sticky;
+        top: 0;
+        background-color: white;
+        padding: 10px 20px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        border-bottom: 2px solid red;
+        z-index: 1000;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .content-wrapper {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .section {
+        width: 600px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 20px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      }
+
+      #section1 {
+        height: 300px;
+        background-color: #d4e6f7;
+        border-bottom: 1px solid red;
+      }
+
+      #section2 {
+        height: 450px;
+        background-color: #f7d4e1;
+      }
+
+      #section3 {
+        height: 600px;
+        background-color: #d4f7d4;
+      }
+
+      .toaster {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #333;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 4px;
+        opacity: 0;
+        transition: opacity 0.3s;
+        z-index: 1000;
+      }
+
+      .toaster.visible {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="sticky-header">Sticky Header</header>
+    <div class="content-wrapper">
+      <div id="section1" class="section">Section 1 (300px)</div>
+      <div id="section2" class="section">Section 2 (450px)</div>
+      <div id="section3" class="section">Section 3 (600px)</div>
+    </div>
+    <div class="toaster" id="toaster"></div>
+
+    <script>
+      const section1 = document.getElementById("section1");
+      const header = document.querySelector(".sticky-header");
+      const toaster = document.getElementById("toaster");
+      let lastPosition = "unknown";
+
+      function showToast(message) {
+        toaster.textContent = message;
+        toaster.classList.add("visible");
+        setTimeout(() => {
+          toaster.classList.remove("visible");
+        }, 2000);
+      }
+
+      function checkIntersection() {
+        const headerBottom = header.getBoundingClientRect().bottom;
+        const rect = section1.getBoundingClientRect();
+        const bottomY = rect.bottom;
+
+        if (bottomY < headerBottom && lastPosition !== "above") {
+          console.log("left the view");
+          showToast("Section 1 left the view");
+          lastPosition = "above";
+        } else if (bottomY >= headerBottom && lastPosition !== "below") {
+          console.log("entered the view");
+          showToast("Section 1 entered the view");
+          lastPosition = "below";
+        }
+      }
+
+      // Initial check
+      checkIntersection();
+
+      // Add scroll listener
+      window.addEventListener("scroll", checkIntersection);
+    </script>
+  </body>
+</html>
