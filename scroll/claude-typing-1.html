@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude-style Typing Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: system-ui, -apple-system, sans-serif;
+            color: #374151;
+        }
+
+        .content-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 2rem;
+            scroll-behavior: smooth;
+        }
+
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        pre {
+            background: #1a1b26;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', ui-monospace, monospace;
+            font-size: 0.9em;
+            color: #a9b1d6;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
+                       0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        pre code {
+            background: transparent;
+            color: inherit;
+            padding: 0;
+            font-size: inherit;
+        }
+
+        pre .keyword { color: #bb9af7; }
+        pre .function { color: #7aa2f7; }
+        pre .string { color: #9ece6a; }
+        pre .number { color: #ff9e64; }
+        pre .comment { color: #565f89; }
+        pre .punctuation { color: #89ddff; }
+        pre .property { color: #7dcfff; }
+
+        code {
+            font-family: 'JetBrains Mono', ui-monospace, monospace;
+            background: #f3f4f6;
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            font-size: 0.9em;
+            color: #1f2937;
+        }
+
+        /* Add a subtle line number effect */
+        pre {
+            counter-reset: line;
+        }
+
+        pre div {
+            display: inline-block;
+            width: 100%;
+        }
+
+        pre div:before {
+            counter-increment: line;
+            content: counter(line);
+            display: inline-block;
+            width: 1.5rem;
+            margin-right: 1.5rem;
+            text-align: right;
+            color: #565f89;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.2em;
+            background: #000;
+            margin-left: 2px;
+            animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        .controls {
+            padding: 1rem;
+            border-top: 1px solid #e5e7eb;
+            text-align: center;
+        }
+
+        button {
+            padding: 0.5rem 1rem;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        button:disabled {
+            background: #93c5fd;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="content-container" id="contentContainer">
+        <div class="content" id="content"></div>
+    </div>
+    <div class="controls">
+        <button id="startButton" onclick="startTyping()">Start Typing Demo</button>
+    </div>
+
+    <script>
+        const container = document.getElementById('contentContainer');
+        const content = document.getElementById('content');
+        const startButton = document.getElementById('startButton');
+        
+        // Typing speed configuration
+        const BASE_TYPING_SPEED = 10; // milliseconds per character (lower = faster)
+        
+        let isNearBottom = true;
+        let isTyping = false;
+
+        // The text content to type out
+        const textContent = `The key elements that make Claude's scrolling behavior feel natural are:
+
+1. **Scroll Position Tracking**:
+\`\`\`javascript
+const observeScroll = () => {
+    const scrollPosition = container.scrollTop + container.clientHeight;
+    const scrollHeight = container.scrollHeight;
+    const threshold = 100; // pixels from bottom
+    isNearBottom = (scrollHeight - scrollPosition) <= threshold;
+};
+\`\`\`
+
+2. **User Interaction Detection**:
+\`\`\`javascript
+let isUserScrolling = false;
+let scrollTimeout;
+
+container.addEventListener('scroll', () => {
+    isUserScrolling = true;
+    clearTimeout(scrollTimeout);
+    
+    // Reset after scroll stops
+    scrollTimeout = setTimeout(() => {
+        isUserScrolling = false;
+    }, 100);
+});
+\`\`\`
+
+3. **Smart Scroll Decisions**:
+\`\`\`javascript
+const scrollIfNeeded = () => {
+    if (isNearBottom && !isUserScrolling) {
+        requestAnimationFrame(() => {
+            const maxScroll = container.scrollHeight - container.clientHeight;
+            container.scrollTo({
+                top: maxScroll,
+                behavior: 'smooth'
+            });
+        });
+    }
+};
+\`\`\`
+
+4. **Content Observation**:
+- Likely uses MutationObserver to detect content changes
+- Handles dynamic content like code blocks and images
+- Maintains scroll position during content reflows
+
+5. **Performance Optimizations**:
+- Uses \`requestAnimationFrame\` for smooth scrolling
+- Debounces scroll events
+- Batches DOM updates
+- Smooths animations with CSS transitions`;
+
+        // Track if user is near bottom
+        const observeScroll = () => {
+            const scrollPosition = container.scrollTop + container.clientHeight;
+            const scrollHeight = container.scrollHeight;
+            const threshold = 100;
+            isNearBottom = (scrollHeight - scrollPosition) <= threshold;
+        };
+
+        // Scroll to bottom if user was near bottom
+        const scrollIfNeeded = () => {
+            if (isNearBottom && !isUserScrolling) {
+                requestAnimationFrame(() => {
+                    const maxScroll = container.scrollHeight - container.clientHeight;
+                    container.scrollTo({
+                        top: maxScroll,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+        };
+
+        // Handle user scrolling
+        let isUserScrolling = false;
+        let scrollTimeout;
+
+        container.addEventListener('scroll', () => {
+            observeScroll();
+            isUserScrolling = true;
+            clearTimeout(scrollTimeout);
+            
+            scrollTimeout = setTimeout(() => {
+                isUserScrolling = false;
+            }, 100);
+        });
+
+        // Convert markdown-style text to HTML
+        const markdownToHtml = (text) => {
+            // Handle code blocks
+            text = text.replace(/```(\w+)?\n([\s\S]*?)```/g, '<pre><code>$2</code></pre>');
+            
+            // Handle inline code
+            text = text.replace(/`([^`]+)`/g, '<code>$1</code>');
+            
+            // Handle bold
+            text = text.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+            
+            // Handle bullet points
+            text = text.replace(/^- (.+)$/gm, '• $1');
+            
+            return text;
+        };
+
+        // Type text with proper HTML formatting
+        const typeText = async (text) => {
+            const cursor = document.createElement('span');
+            cursor.className = 'cursor';
+            content.appendChild(cursor);
+
+            let buffer = '';
+            let inCode = false;
+            let html = markdownToHtml(text);
+            
+            for (let i = 0; i < html.length; i++) {
+                const char = html[i];
+                
+                if (char === '<') {
+                    if (buffer) {
+                        content.insertBefore(document.createTextNode(buffer), cursor);
+                        buffer = '';
+                    }
+                    inCode = true;
+                    buffer = char;
+                } else if (char === '>' && inCode) {
+                    buffer += char;
+                    content.insertBefore(document.createRange().createContextualFragment(buffer), cursor);
+                    buffer = '';
+                    inCode = false;
+                } else if (inCode) {
+                    buffer += char;
+                } else {
+                    if (char === ' ') {
+                        buffer += '\u00A0';
+                    } else {
+                        buffer += char;
+                    }
+                    
+                    if (buffer.length > 3 || i === html.length - 1) {
+                        content.insertBefore(document.createTextNode(buffer), cursor);
+                        buffer = '';
+                        scrollIfNeeded();
+                        await new Promise(resolve => setTimeout(resolve, BASE_TYPING_SPEED));
+                    }
+                }
+            }
+            
+            cursor.remove();
+        };
+
+        // Start the typing animation
+        const startTyping = async () => {
+            if (isTyping) return;
+            
+            isTyping = true;
+            startButton.disabled = true;
+            content.innerHTML = '';
+            
+            await typeText(textContent);
+            
+            isTyping = false;
+            startButton.disabled = false;
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Typing Animation Sections</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-bottom: 90px;
+      }
+
+      body {
+        font-family: system-ui, -apple-system, sans-serif;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        line-height: 1.6;
+      }
+
+      .wrapper {
+        flex: 1;
+        overflow-y: auto;
+      }
+
+      .section {
+        min-height: 200px;
+        padding: 40px 20px;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+      }
+
+      .section.visible {
+        opacity: 1;
+      }
+
+      .section-content {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      #section1 {
+        background-color: #f0f9ff;
+      }
+      #section2 {
+        background-color: #e0f2fe;
+      }
+      #section3 {
+        background-color: #bae6fd;
+      }
+      #section4 {
+        background-color: #7dd3fc;
+        border-bottom: 10px solid red;
+        margin-bottom: 80px;
+      }
+
+      .bottom-nav {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 80px;
+        background-color: rgba(12, 74, 110, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 5;
+      }
+
+      .nav-link {
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+        cursor: pointer;
+      }
+
+      .nav-link:hover {
+        background-color: #0369a1;
+      }
+
+      h2 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+      }
+
+      h2.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .paragraph {
+        margin-bottom: 1.5rem;
+        min-height: 1.6em;
+      }
+
+      .cursor {
+        display: inline-block;
+        width: 2px;
+        height: 1.2em;
+        background-color: #000;
+        margin-left: 2px;
+        animation: blink 1s infinite;
+        vertical-align: bottom;
+      }
+
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper" id="wrapper"></div>
+
+    <nav class="bottom-nav">
+      <a class="nav-link" data-section="section1">Section 1</a>
+      <a class="nav-link" data-section="section2">Section 2</a>
+      <a class="nav-link" data-section="section3">Section 3</a>
+      <a class="nav-link" data-section="section4">Section 4</a>
+    </nav>
+
+    <script>
+      const sections = [
+        {
+          id: "section1",
+          title: "Introduction",
+          paragraphs: [
+            "Welcome to our interactive typing demonstration. This section showcases how text can appear dynamically, creating an engaging user experience that mimics natural typing.",
+            "As you watch, you'll notice each character appearing sequentially, followed by smooth transitions between sections. This creates a natural flow that guides the reader through the content.",
+          ],
+        },
+        {
+          id: "section2",
+          title: "The Journey Continues",
+          paragraphs: [
+            "Moving on to our second section, we can observe how the previous content remains while new text begins to materialize. This creates a sense of progression and builds upon previously established information.",
+            "The typing animation helps maintain focus and creates a rhythm that keeps readers engaged with the content as it unfolds before their eyes.",
+          ],
+        },
+        {
+          id: "section3",
+          title: "Building Momentum",
+          paragraphs: [
+            "By the third section, you've witnessed the pattern of reveal and scroll. Each new section begins only after the previous one has completed its animation sequence.",
+            "This careful orchestration of timing and movement helps create a cohesive narrative flow, making the content more digestible and engaging.",
+          ],
+        },
+        {
+          id: "section4",
+          title: "The Final Chapter",
+          paragraphs: [
+            "As we reach our final section, you can appreciate how this progressive reveal technique has guided you through the content. The red border below serves as a visual anchor.",
+            "Thank you for experiencing this demonstration of dynamic content revelation combined with smooth scrolling and typing animations.",
+          ],
+        },
+      ];
+
+      const wrapper = document.getElementById("wrapper");
+      let currentSectionIndex = 0;
+      let isTyping = false;
+
+      function createSection(section) {
+        const sectionElement = document.createElement("section");
+        sectionElement.id = section.id;
+        sectionElement.className = "section";
+
+        const contentDiv = document.createElement("div");
+        contentDiv.className = "section-content";
+
+        const title = document.createElement("h2");
+        title.textContent = section.title;
+
+        contentDiv.appendChild(title);
+
+        section.paragraphs.forEach(() => {
+          const p = document.createElement("p");
+          p.className = "paragraph";
+          contentDiv.appendChild(p);
+        });
+
+        sectionElement.appendChild(contentDiv);
+        return sectionElement;
+      }
+
+      function typeText(element, text) {
+        return new Promise((resolve) => {
+          let index = 0;
+          const cursor = document.createElement("span");
+          cursor.className = "cursor";
+          element.appendChild(cursor);
+
+          function type() {
+            if (index < text.length) {
+              element.insertBefore(document.createTextNode(text[index]), cursor);
+              index++;
+              // BASE_TYPING_SPEED: lower number = faster typing
+              // Random variation added to base speed (0.5x to 1.5x of base speed)
+              const BASE_TYPING_SPEED = 15; // milliseconds per character
+              setTimeout(type, Math.random() * BASE_TYPING_SPEED + BASE_TYPING_SPEED);
+            } else {
+              cursor.remove();
+              resolve();
+            }
+          }
+          type();
+        });
+      }
+
+      async function animateSection(section) {
+        isTyping = true;
+        const sectionElement = document.getElementById(section.id);
+        sectionElement.classList.add("visible");
+
+        const title = sectionElement.querySelector("h2");
+        title.classList.add("visible");
+
+        const paragraphs = sectionElement.querySelectorAll(".paragraph");
+
+        for (let i = 0; i < section.paragraphs.length; i++) {
+          await typeText(paragraphs[i], section.paragraphs[i]);
+          scrollToBottom();
+        }
+
+        isTyping = false;
+        if (currentSectionIndex < sections.length - 1) {
+          currentSectionIndex++;
+          startNextSection();
+        }
+      }
+
+      function scrollToBottom() {
+        const scrollHeight = wrapper.scrollHeight;
+        const clientHeight = wrapper.clientHeight;
+        const maxScroll = scrollHeight - clientHeight;
+
+        wrapper.scrollTo({
+          top: maxScroll,
+          behavior: "smooth",
+        });
+      }
+
+      function startNextSection() {
+        if (currentSectionIndex < sections.length && !isTyping) {
+          const section = sections[currentSectionIndex];
+          const sectionElement = createSection(section);
+          wrapper.appendChild(sectionElement);
+
+          requestAnimationFrame(() => {
+            animateSection(section);
+          });
+        }
+      }
+
+      // Navigation click handlers
+      document.querySelectorAll(".nav-link").forEach((link) => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          const sectionId = link.getAttribute("data-section");
+          const section = document.getElementById(sectionId);
+          if (section) {
+            section.scrollIntoView({ behavior: "smooth" });
+          }
+        });
+      });
+
+      // Start the first section
+      startNextSection();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude-style Scrolling</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        .chat-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            scroll-behavior: smooth;
+        }
+
+        .message {
+            max-width: 800px;
+            margin: 0 auto 16px;
+            padding: 16px;
+            border-radius: 8px;
+            line-height: 1.5;
+        }
+
+        .assistant {
+            background-color: #f3f4f6;
+        }
+
+        .human {
+            background-color: #e5e7eb;
+        }
+
+        .input-area {
+            border-top: 1px solid #e5e7eb;
+            padding: 20px;
+            background: white;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.2em;
+            background: #000;
+            margin-left: 2px;
+            animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container" id="chatContainer"></div>
+    <div class="input-area">
+        <button onclick="simulateResponse()">Simulate Response</button>
+    </div>
+
+    <script>
+        const chatContainer = document.getElementById('chatContainer');
+        let isNearBottom = true;
+        let isResponding = false;
+
+        // Track if user is near bottom
+        const observeScroll = () => {
+            const scrollPosition = chatContainer.scrollTop + chatContainer.clientHeight;
+            const scrollHeight = chatContainer.scrollHeight;
+            const threshold = 100; // pixels from bottom
+            
+            isNearBottom = (scrollHeight - scrollPosition) <= threshold;
+        };
+
+        // Scroll to bottom if user was already near bottom
+        const scrollIfNeeded = () => {
+            if (isNearBottom && !isUserScrolling) {
+                requestAnimationFrame(() => {
+                    const maxScroll = chatContainer.scrollHeight - chatContainer.clientHeight;
+                    chatContainer.scrollTo({
+                        top: maxScroll,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+        };
+
+        // Detect user scrolling
+        let isUserScrolling = false;
+        let scrollTimeout;
+
+        chatContainer.addEventListener('scroll', () => {
+            observeScroll();
+            
+            // Set user scrolling flag
+            isUserScrolling = true;
+            clearTimeout(scrollTimeout);
+            
+            // Reset user scrolling flag after 100ms of no scrolling
+            scrollTimeout = setTimeout(() => {
+                isUserScrolling = false;
+            }, 100);
+        });
+
+        // Create and append a message
+        const createMessage = (text, isAssistant) => {
+            const message = document.createElement('div');
+            message.className = `message ${isAssistant ? 'assistant' : 'human'}`;
+            message.textContent = text;
+            chatContainer.appendChild(message);
+            scrollIfNeeded();
+            return message;
+        };
+
+        // Simulate typing effect
+        const typeText = async (element, text) => {
+            const cursor = document.createElement('span');
+            cursor.className = 'cursor';
+            element.appendChild(cursor);
+
+            for (let char of text) {
+                if (char === ' ') {
+                    element.insertBefore(document.createTextNode('\u00A0'), cursor);
+                } else {
+                    element.insertBefore(document.createTextNode(char), cursor);
+                }
+                scrollIfNeeded();
+                await new Promise(resolve => setTimeout(resolve, 20));
+            }
+            cursor.remove();
+        };
+
+        // Simulate a response
+        const simulateResponse = async () => {
+            if (isResponding) return;
+            isResponding = true;
+
+            // Add user message
+            createMessage('Can you explain how you maintain scroll position while typing?', false);
+
+            // Add assistant message and type response
+            const assistantMessage = createMessage('', true);
+            await typeText(assistantMessage, 
+                'Let me demonstrate the scrolling behavior. Notice how the text smoothly appears ' +
+                'and the view automatically scrolls to keep up with the new content. ' +
+                'However, if you scroll up while I\'m typing, I\'ll respect your position and won\'t ' +
+                'force you back to the bottom. This creates a more natural reading experience.\n\n' +
+                'The key techniques involved include:\n' +
+                '1. Tracking scroll position relative to bottom\n' +
+                '2. Using requestAnimationFrame for smooth scrolling\n' +
+                '3. Detecting user scroll interactions\n' +
+                '4. Only auto-scrolling when appropriate'
+            );
+
+            isResponding = false;
+        };
+
+        // Initial message
+        createMessage('Welcome! Click the button below to simulate a Claude-style response.', true);
+    </script>
+</body>
+</html>
