@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Font Detection Tool</title>
+    <style>
+      body {
+        font-family: "Helvetica Neue", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Arial,
+          sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        line-height: 1.6;
+      }
+
+      #sample-text {
+        font-size: 24px;
+        margin: 20px 0;
+      }
+
+      #result {
+        margin-top: 20px;
+        padding: 15px;
+        background-color: #f5f5f5;
+        border-radius: 4px;
+      }
+
+      button {
+        background-color: #4285f4;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #3367d6;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Font Detection Tool</h1>
+
+    <p>This tool detects which font is actually being rendered from your CSS font-family stack.</p>
+
+    <div id="sample-text">Sample Text: The quick brown fox jumps over the lazy dog 1234567890</div>
+
+    <button id="detect-font">Detect Current Font</button>
+
+    <div id="result"></div>
+
+    <h2>Technical details</h2>
+    <p>
+      This tool uses a combination of CSS font-family detection and canvas-based font detection to determine the actual
+      font being used.
+    </p>
+    <ul>
+      <li>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/getComputedStyle"
+          ><code>window.getComputedStyle()</code></a
+        >
+        - method returns an object containing the values of all CSS properties of an element, after applying active
+        stylesheets and resolving any basic computation those values may contain.
+      </li>
+
+      <li></li>
+      <li></li>
+    </ul>
+
+    <script>
+      document.getElementById("detect-font").addEventListener("click", function () {
+        const sampleElement = document.getElementById("sample-text");
+        const resultElement = document.getElementById("result");
+
+        // Get the computed font family
+        const computedStyle = window.getComputedStyle(sampleElement);
+        const computedFontFamily = computedStyle.getPropertyValue("font-family");
+
+        // Use canvas technique to actually determine what font is rendered
+        function detectFont(text, baseFont) {
+          // Create a reference canvas using a common font
+          const canvas1 = document.createElement("canvas");
+          const context1 = canvas1.getContext("2d");
+          context1.font = `16px ${baseFont}, monospace`;
+          const baseWidth = context1.measureText(text).width;
+
+          // Create a test canvas using the computed font
+          const canvas2 = document.createElement("canvas");
+          const context2 = canvas2.getContext("2d");
+          context2.font = `16px ${computedFontFamily}`;
+          const actualWidth = context2.measureText(text).width;
+
+          // If widths match, the font is likely the same as the base font
+          return {
+            baseFont,
+            isMatch: Math.abs(baseWidth - actualWidth) < 2,
+          };
+        }
+
+        // Font list to test against (from the CSS declaration)
+        const fontList = [
+          "Helvetica Neue",
+          "-apple-system",
+          "system-ui",
+          "BlinkMacSystemFont",
+          "Segoe UI",
+          "Roboto",
+          "Arial",
+          "sans-serif",
+        ];
+
+        // Test each font
+        const testString = "The quick brown fox jumps over the lazy dog";
+        let detectedFont = "Unknown";
+        let detectionMethod = "width comparison";
+
+        for (const font of fontList) {
+          const result = detectFont(testString, font);
+          if (result.isMatch) {
+            detectedFont = font;
+            break;
+          }
+        }
+
+        // Use another detection method as backup
+        if (detectedFont === "Unknown") {
+          // Try font-face detection API if available
+          if (document.fonts && document.fonts.check) {
+            for (const font of fontList) {
+              if (document.fonts.check(`16px "${font}"`)) {
+                detectedFont = font;
+                detectionMethod = "document.fonts.check API";
+                break;
+              }
+            }
+          }
+        }
+
+        // Display results
+        resultElement.innerHTML = `
+                <h3>Font Detection Results:</h3>
+                <p><strong>Detected font:</strong> ${detectedFont}</p>
+                <p><strong>Detection method:</strong> ${detectionMethod}</p>
+                <p><strong>Computed font-family:</strong> ${computedFontFamily}</p>
+                <p><strong>CSS declaration:</strong> "Helvetica Neue", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"</p>
+                <p><em>Note: This is an approximation. The detection works by comparing text rendering widths and may not be 100% accurate in all browsers.</em></p>
+            `;
+      });
+    </script>
+  </body>
+</html>
