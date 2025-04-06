@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Positioning Demo</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .container {
+        position: relative;
+        border: 2px solid #ccc;
+        background-color: #f8f8f8;
+        height: 300px;
+        margin-bottom: 30px;
+        padding: 10px;
+        overflow: auto;
+      }
+
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: #ddd;
+        border: 1px solid #999;
+        padding: 10px;
+        box-sizing: border-box;
+        margin: 10px;
+      }
+
+      .target-box {
+        background-color: #ffeb3b;
+        border: 1px solid #fbc02d;
+      }
+
+      .control-panel {
+        margin-bottom: 20px;
+      }
+
+      select,
+      input,
+      button {
+        padding: 8px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+      }
+
+      label {
+        display: inline-block;
+        margin-right: 5px;
+      }
+
+      .coordinates {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+
+      .coordinates input {
+        width: 50px;
+      }
+
+      .property-display {
+        background-color: #eee;
+        padding: 10px;
+        border-radius: 4px;
+        margin-bottom: 20px;
+        font-family: monospace;
+      }
+
+      .spacer {
+        margin-bottom: 800px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>CSS Positioning Demo</h1>
+
+    <div class="control-panel">
+      <div>
+        <label for="position-type">Position type:</label>
+        <select id="position-type">
+          <option value="static">static (default)</option>
+          <option value="relative">relative</option>
+          <option value="absolute">absolute</option>
+          <option value="fixed">fixed</option>
+          <option value="sticky">sticky</option>
+        </select>
+      </div>
+
+      <div class="coordinates">
+        <label for="top-value">top:</label>
+        <input type="number" id="top-value" value="0" />px
+
+        <label for="left-value" style="margin-left: 15px">left:</label>
+        <input type="number" id="left-value" value="0" />px
+      </div>
+
+      <div>
+        <label for="z-index">z-index:</label>
+        <input type="number" id="z-index" value="auto" />
+      </div>
+
+      <button id="apply-button">Apply</button>
+      <button id="reset-button">Reset</button>
+    </div>
+
+    <div class="property-display" id="css-display">
+      .target-box {<br />
+      &nbsp;&nbsp;position: static;<br />
+      }
+    </div>
+
+    <div class="container" id="demo-container">
+      <div class="box">Normal box 1</div>
+      <div class="box target-box" id="target-box">Yellow box<br />(position: static)</div>
+      <div class="box">Normal box 2</div>
+      <div class="box">Normal box 3</div>
+      <div class="box">Normal box 4</div>
+    </div>
+
+    <div class="explanation" id="explanation">
+      <h3>Static Position (Default)</h3>
+      <p>
+        Elements with <code>position: static</code> are positioned according to the normal flow of the document. The
+        <code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code>, and
+        <code>z-index</code> properties have no effect.
+      </p>
+    </div>
+
+    <div class="spacer"></div>
+
+    <script>
+      // Get DOM elements
+      const positionType = document.getElementById("position-type");
+      const topValue = document.getElementById("top-value");
+      const leftValue = document.getElementById("left-value");
+      const zIndex = document.getElementById("z-index");
+      const applyButton = document.getElementById("apply-button");
+      const resetButton = document.getElementById("reset-button");
+      const targetBox = document.getElementById("target-box");
+      const cssDisplay = document.getElementById("css-display");
+      const explanation = document.getElementById("explanation");
+
+      // Explanation text for different position types
+      const explanations = {
+        static: `
+        <h3>Static Position (Default)</h3>
+        <p>Elements with <code>position: static</code> are positioned according to the normal flow of the document. The <code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code>, and <code>z-index</code> properties have no effect.</p>
+      `,
+        relative: `
+        <h3>Relative Position</h3>
+        <p>Elements with <code>position: relative</code> are positioned relative to their normal position in the document flow. Setting <code>top</code>, <code>right</code>, <code>bottom</code>, and <code>left</code> properties will adjust the element away from its normal position. Other content will not be adjusted to fit into any gap left by the element.</p>
+      `,
+        absolute: `
+        <h3>Absolute Position</h3>
+        <p>Elements with <code>position: absolute</code> are removed from the normal document flow. The element is positioned relative to its closest positioned ancestor (an element with position other than static), or to the initial containing block if no positioned ancestors exist. Absolute positioned elements can overlap other elements.</p>
+      `,
+        fixed: `
+        <h3>Fixed Position</h3>
+        <p>Elements with <code>position: fixed</code> are removed from the normal document flow and positioned relative to the viewport. The element stays in the same place even when the page is scrolled. Try scrolling the page to see this effect.</p>
+      `,
+        sticky: `
+        <h3>Sticky Position</h3>
+        <p>Elements with <code>position: sticky</code> are positioned based on the user's scroll position. A sticky element toggles between <code>relative</code> and <code>fixed</code>, depending on the scroll position. Try scrolling the page to see this effect.</p>
+      `,
+      };
+
+      // Apply position settings
+      function applyPosition() {
+        const position = positionType.value;
+        const top = topValue.value !== "" ? `${topValue.value}px` : "auto";
+        const left = leftValue.value !== "" ? `${leftValue.value}px` : "auto";
+        const zIndexValue = zIndex.value !== "" ? zIndex.value : "auto";
+
+        // Update the target box
+        targetBox.style.position = position;
+        targetBox.style.top = top;
+        targetBox.style.left = left;
+        targetBox.style.zIndex = zIndexValue;
+
+        // Update the target box label
+        targetBox.innerHTML = `Yellow box<br>(position: ${position})`;
+
+        // Update CSS display
+        let cssText = `.target-box {<br>`;
+        cssText += `&nbsp;&nbsp;position: ${position};<br>`;
+
+        if (position !== "static") {
+          if (top !== "auto") cssText += `&nbsp;&nbsp;top: ${top};<br>`;
+          if (left !== "auto") cssText += `&nbsp;&nbsp;left: ${left};<br>`;
+          if (zIndexValue !== "auto") cssText += `&nbsp;&nbsp;z-index: ${zIndexValue};<br>`;
+        }
+
+        cssText += `}`;
+        cssDisplay.innerHTML = cssText;
+
+        // Update explanation
+        explanation.innerHTML = explanations[position];
+      }
+
+      // Reset to default
+      function resetPosition() {
+        positionType.value = "static";
+        topValue.value = "0";
+        leftValue.value = "0";
+        zIndex.value = "auto";
+
+        targetBox.style.position = "static";
+        targetBox.style.top = "auto";
+        targetBox.style.left = "auto";
+        targetBox.style.zIndex = "auto";
+
+        targetBox.innerHTML = `Yellow box<br>(position: static)`;
+        cssDisplay.innerHTML = `.target-box {<br>&nbsp;&nbsp;position: static;<br>}`;
+        explanation.innerHTML = explanations.static;
+      }
+
+      // Add event listeners
+      applyButton.addEventListener("click", applyPosition);
+      resetButton.addEventListener("click", resetPosition);
+
+      // Position type change auto-updates controls
+      positionType.addEventListener("change", function () {
+        const position = positionType.value;
+
+        // Enable/disable offset inputs based on position type
+        const disableOffsets = position === "static";
+        topValue.disabled = disableOffsets;
+        leftValue.disabled = disableOffsets;
+        zIndex.disabled = disableOffsets;
+
+        applyPosition();
+      });
+    </script>
+  </body>
+</html>
