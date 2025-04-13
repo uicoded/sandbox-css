@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Text Decoration</title>
+  </head>
+  <body>
+    <h1>Text Decoration</h1>
+    <p>
+      The
+      <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration"><code>text-decoration</code></a>
+      property is used to set or remove decorations from text.
+    </p>
+
+    <h2>Underline</h2>
+    <p>The <code>underline</code> value adds <span style="text-decoration: underline">a line below the text.</span></p>
+
+    <h2>Overline</h2>
+    <p>The <code>overline</code> value adds <span style="text-decoration: overline">a line above the text.</span></p>
+
+    <h2>Line-through</h2>
+    <p>
+      The <code>line-through</code> value adds
+      <span style="text-decoration: line-through">a line through the text.</span>
+    </p>
+
+    <h2>None</h2>
+    <p>The <code>none</code> value removes <span style="text-decoration: none">any decoration.</span></p>
+
+    <hr />
+    <h2>Combinations</h2>
+    <p>
+      <span style="text-decoration: wavy red overline underline line-through"
+        >This text has red wavy lines above, bellow and through the middle.</span
+      >
+      >
+    </p>
+    <hr />
+
+    <h2>
+      1.
+      <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-line"
+        ><code>text-decoration-line</code></a
+      >
+    </h2>
+    <p>
+      <span style="text-decoration-style: solid; text-decoration-line: underline">This text has only an underline.</span
+      >(notice it requireds TWO properties)
+    </p>
+    <p>
+      <span style="text-decoration-style: solid; text-decoration-line: overline">This text has only an overline.</span>
+    </p>
+    <p>
+      <span style="text-decoration-style: solid; text-decoration-line: line-through"
+        >This text has only a line-through.</span
+      >
+    </p>
+    <p>
+      <span style="text-decoration-style: solid; text-decoration-line: underline overline"
+        >This text has both underline and overline.</span
+      >
+    </p>
+    <p>
+      <span style="text-decoration-style: solid; text-decoration-line: underline line-through"
+        >This text has both underline and line-through.</span
+      >
+    </p>
+    <p>
+      <span style="text-decoration-style: solid; text-decoration-line: overline line-through"
+        >This text has both overline and line-through.</span
+      >
+    </p>
+    <p>
+      <span style="text-decoration-style: dotted; text-decoration-line: underline overline line-through"
+        >This text has all three decoration lines applied on dotted style.</span
+      >
+    </p>
+    <p>This is normal text with <a href="#" style="text-decoration-line: none">a link with no decoration</a>.</p>
+
+    <hr />
+
+    <h2>
+      2.
+      <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-style"
+        ><code>text-decoration-style</code></a
+      >
+    </h2>
+
+    <p>
+      <span style="text-decoration-style: solid; text-decoration-line: underline">This text has a solid underline.</span
+      >(notice it requireds TWO properties)
+    </p>
+    <p>
+      <span style="text-decoration-style: double; text-decoration-line: underline"
+        >This text has a double underline.</span
+      >
+    </p>
+    <p>
+      <span style="text-decoration-style: dotted; text-decoration-line: underline"
+        >This text has a dotted underline.</span
+      >
+    </p>
+    <p>
+      <span style="text-decoration-style: dashed; text-decoration-line: underline"
+        >This text has a dashed underline.</span
+      >
+    </p>
+    <p>
+      <span style="text-decoration-style: wavy; text-decoration-line: underline">This text has a wavy underline.</span>
+    </p>
+
+    <hr />
+
+    <h2>
+      3.
+      <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-color"
+        ><code>text-decoration-color</code></a
+      >
+    </h2>
+    <p>
+      <span style="text-decoration-style: solid; text-decoration-line: underline; text-decoration-color: red"
+        >This underline is red</span
+      >
+      (notice it requireds THREE properties)
+    </p>
+    <p>
+      <span
+        style="
+          text-decoration-style: solid;
+          text-decoration-line: underline;
+          text-decoration-color: hsl(120, 100%, 50%);
+        "
+        >This underline is green</span
+      >
+    </p>
+    <p>
+      <span style="text-decoration-style: solid; text-decoration-line: underline; text-decoration-color: #00f"
+        >This underline is blue.</span
+      >
+    </p>
+  </body>
+</html>
