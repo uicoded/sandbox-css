@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4 Ways to Add SVG</title>
+    <style>
+      .demo {
+        margin-bottom: 1rem;
+      }
+
+      :root {
+        --circle-fill: red;
+      }
+
+      .icon-class-dependent {
+        width: 100px;
+        height: 100px;
+        background-image: url("class-dependent-svg-image.svg");
+        background-size: cover;
+      }
+      .icon-variable-dependent {
+        width: 100px;
+        height: 100px;
+        background-image: url("variable-dependent-svg-image.svg");
+        background-size: cover;
+      }
+
+      /** Does not work
+      object {
+        --circle-fill: blue;
+      }
+      */
+
+      circle {
+        fill: var(--circle-fill);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>4 Ways to Add SVG to HTML, which one supports style manipulation?</h1>
+
+    <section>
+      <h2>1. Using <code>&lt;object&gt;</code> Element</h2>
+      <div class="demo">
+        <object type="image/svg+xml" data="class-dependent-svg-image.svg" width="100" height="100"></object>
+        <object type="image/svg+xml" data="variable-dependent-svg-image.svg" width="100" height="100"></object>
+      </div>
+      <p>No styles can be applied to internal SVG elements.</p>
+      <p>
+        When an SVG is loaded via an <code>&lt;object&gt;</code> element, it creates a separate document context with
+        its own DOM. This creates what's effectively a shadow DOM boundary between the parent HTML document and the
+        embedded SVG document.
+      </p>
+      <p>One possible solution to this is to have the SVG reference an the shared external stylesheet.</p>
+    </section>
+
+    <section>
+      <h2>2. Inline SVG</h2>
+      <div class="demo">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="100"
+          height="100"
+          role="img"
+          aria-labelledby="inlineTitleId inlineDescId"
+        >
+          <title id="inlineTitleId">Blue circle</title>
+          <desc id="inlineDescId">A simple circle shape filled with sky blue</desc>
+          <circle cx="50" cy="50" r="40" fill="skyblue" />
+        </svg>
+      </div>
+      <p>
+        The CSS rule <code>circle { fill: var(--circle-fill); }</code> is applied after the SVG is parsed, so it
+        overrides the fill="skyblue" attribute in the SVG.
+      </p>
+    </section>
+
+    <section>
+      <h2>3. SVG as a Background Image (CSS)</h2>
+      <div class="demo">
+        <div class="icon icon-class-dependent"></div>
+        <div class="icon icon-variable-dependent"></div>
+      </div>
+      <p>Can't style internal SVG elements with CSS.</p>
+    </section>
+
+    <section>
+      <h2>4. SVG as an <code>&lt;img /&gt;</code> Element</h2>
+      <div class="demo">
+        <img src="class-dependent-svg-image.svg" alt="Blue circle" width="100" height="100" />
+        <img src="variable-dependent-svg-image.svg" alt="Red circle" width="100" height="100" />
+      </div>
+      <p>Can't style internal SVG elements with CSS.</p>
+    </section>
+
+    <footer>
+      <p>
+        Note: Each method has its own advantages and use cases. Choose the one that best fits your specific
+        requirements.
+      </p>
+    </footer>
+  </body>
+</html>

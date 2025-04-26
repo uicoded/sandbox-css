@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4 Ways to Add SVG</title>
+    <style>
+      .demo {
+        margin-bottom: 1rem;
+      }
+      .icon {
+        width: 100px;
+        height: 100px;
+        background-image: url("accessible-image.svg");
+        background-size: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>4 Ways to Add SVG to HTML</h1>
+
+    <section>
+      <h2>1. Using <code>&lt;object&gt;</code> Element</h2>
+      <div class="demo">
+        <object type="image/svg+xml" data="accessible-image.svg" width="100" height="100"></object>
+      </div>
+      <p>
+        <strong>Pros:</strong> Maintains SVG interactivity, can be styled with CSS, fallback content possible.
+        <br />
+        <strong>Cons:</strong> More complex than other methods, may have cross-browser issues.
+      </p>
+    </section>
+
+    <section>
+      <h2>2. Inline SVG</h2>
+      <div class="demo">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="100"
+          height="100"
+          role="img"
+          aria-labelledby="inlineTitleId inlineDescId"
+        >
+          <title id="inlineTitleId">Blue circle</title>
+          <desc id="inlineDescId">A simple circle shape filled with sky blue</desc>
+          <circle cx="50" cy="50" r="40" fill="skyblue" />
+        </svg>
+      </div>
+      <p>
+        <strong>Pros:</strong> Full control over SVG elements, can be manipulated with JavaScript, best for animation.
+        <br />
+        <strong>Cons:</strong> Increases HTML size, can't be cached like external files.
+      </p>
+    </section>
+
+    <section>
+      <h2>3. SVG as a Background Image (CSS)</h2>
+      <div class="demo">
+        <div class="icon"></div>
+      </div>
+      <p>
+        <strong>Pros:</strong> Easy to implement, works well for decorative images.
+        <br />
+        <strong>Cons:</strong> Limited accessibility, can't interact with SVG elements, no JavaScript manipulation.
+      </p>
+    </section>
+
+    <section>
+      <h2>4. SVG as an <code>&lt;img /&gt;</code> Element</h2>
+      <div class="demo">
+        <img src="accessible-image.svg" alt="Blue circle" width="100" height="100" />
+      </div>
+      <p>
+        <strong>Pros:</strong> Simple to use, familiar image behavior, browser caching.
+        <br />
+        <strong>Cons:</strong> Limited interactivity, can't style internal SVG elements with CSS.
+      </p>
+    </section>
+
+    <footer>
+      <p>
+        Note: Each method has its own advantages and use cases. Choose the one that best fits your specific
+        requirements.
+      </p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accessible Image</title>
+  </head>
+  <body>
+    <h1>Accessible Image</h1>
+    <p>Inside <code>&lt;img&gt;</code> tag: <img src="./accessible-image.svg" alt="accessible svg" /></p>
+    <p>
+      Inline SVG:
+      <svg role="img" aria-labelledby="titleId descId">
+        <title id="titleId">Blue circle</title>
+        <desc id="descId">A simple circle shape filled with sky blue</desc>
+        <circle cx="50" cy="50" r="40" fill="skyblue" />
+      </svg>
+    </p>
+    <h2><code>title</code> and <code>desc</code></h2>
+    <ul>
+      <li><code>role=&quot;img&quot;</code>: Tells assistive tech this is an image, not just a decorative shape.</li>
+      <li><code>aria-labelledby=&quot;titleId descId&quot;</code>: Connects the text to the SVG.</li>
+      <li>
+        <code>&lt;title&gt;</code>: Gives the SVG a short, accessible name (like <code>alt</code> text for images).
+      </li>
+      <li><code>&lt;desc&gt;</code>: Provides a longer, optional description (context or explanation).</li>
+    </ul>
+    <section>
+      <h2>When is <code>xmlns</code> required?</h2>
+      <p>The <code>xmlns</code> attribute is only required in certain contexts:</p>
+      <table border="1" cellpadding="6" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Context</th>
+            <th><code>xmlns</code> Required?</th>
+            <th>Why?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Inline in HTML</td>
+            <td>No ❌</td>
+            <td>Handled by browser’s HTML parser</td>
+          </tr>
+          <tr>
+            <td>SVG file (standalone <code>.svg</code>)</td>
+            <td>Yes ✅</td>
+            <td>Required for XML validation</td>
+          </tr>
+          <tr>
+            <td>Inline in XHTML</td>
+            <td>Yes ✅</td>
+            <td>Because XHTML is XML-based</td>
+          </tr>
+          <tr>
+            <td>Copied into XML/MathML</td>
+            <td>Yes ✅</td>
+            <td>Needs proper XML namespacing</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </body>
+</html>
