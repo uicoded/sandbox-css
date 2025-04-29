@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2 Rows 1st Row 2 Cols</title>
+    <style>
+      :root {
+        --div-container-color: rgb(56, 76, 119);
+        --div-col-color: rgb(88, 110, 157);
+        --grid-container-color: rgb(111, 41, 97);
+        --grid-col-color: rgb(173, 100, 159);
+        --flex-container-color: rgb(29, 80, 36);
+        --flex-col-color: rgb(58, 129, 67);
+      }
+
+      .container-1 {
+        background-color: var(--div-container-color);
+
+        .col1,
+        .col2,
+        .row2 {
+          display: inline-block;
+          background-color: var(--div-col-color);
+          margin: 0.5em;
+        }
+        .col1,
+        .col2 {
+          width: calc(50% - 1.2em); /* 👈 this is finicky not real solution */
+          height: 50px;
+        }
+        .row2 {
+          /* width: 100%; */
+          width: calc(100% - 1em);
+          height: 50px;
+        }
+      }
+
+      .container-2 {
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+          "col1 col2"
+          "row2 row2";
+        height: 250px;
+        gap: 0.5em;
+        background-color: var(--grid-container-color);
+
+        .col1 {
+          grid-area: col1;
+          background-color: var(--grid-col-color);
+        }
+
+        .col2 {
+          grid-area: col2;
+          background-color: var(--grid-col-color);
+        }
+
+        .row2 {
+          grid-area: row2;
+          background-color: var(--grid-col-color);
+        }
+      }
+
+      .container-3 {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+        background-color: var(--flex-container-color);
+        padding: 0.5em;
+        height: 250px;
+
+        .row1 {
+          display: flex;
+          gap: 0.5em;
+          flex: 1;
+
+          .col1,
+          .col2 {
+            flex: 1;
+            background-color: var(--flex-col-color);
+          }
+        }
+
+        .row2 {
+          flex: 1;
+          background-color: var(--flex-col-color);
+        }
+      }
+    </style>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  </head>
+  <body>
+    <h2>Div inline-block</h2>
+    <div class="container-1">
+      <div class="row1">
+        <div class="col1">col1</div>
+        <div class="col2">col2</div>
+      </div>
+      <div class="row2">row 2</div>
+    </div>
+
+    <h2>Grid</h2>
+    <div class="container-2">
+      <div class="col1">col1</div>
+      <div class="col2">col2</div>
+      <div class="row2">row 2</div>
+    </div>
+
+    <h2>Flex</h2>
+    <div class="container-3">
+      <div class="row1">
+        <div class="col1">col1</div>
+        <div class="col2">col2</div>
+      </div>
+      <div class="row2">row 2</div>
+    </div>
+
+    <h2>Tailwind 3.x Grid</h2>
+    <div class="container-4 bg-indigo-800 p-2 grid grid-cols-2 grid-rows-2 gap-2 h-64">
+      <div class="bg-indigo-500">col1</div>
+      <div class="bg-indigo-500">col2</div>
+      <div class="bg-indigo-500 col-span-2">row 2</div>
+    </div>
+
+    <h2>Tailwind 3.x Flex</h2>
+    <div class="container-5 bg-indigo-800 p-2 flex flex-col gap-2 h-64">
+      <div class="flex gap-2 flex-1">
+        <div class="w-1/2 bg-indigo-500 flex-1">col1</div>
+        <div class="w-1/2 bg-indigo-500 flex-1">col2</div>
+      </div>
+      <div class="w-full bg-indigo-500 flex-1">row 2</div>
+    </div>
+  </body>
+</html>
