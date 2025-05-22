@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Viewport width unit - vw</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        #viewport-width {
+            background-color: darkblue;
+            height: 30px;
+        }
+    </style>
+<body>
+    <h1>Viewport width unit - vw</h1>
+
+    <span id="viewport-width-display">10</span>
+    <input type="range" min="1" max="100" value="10" id="range">
+    <div id="viewport-width"></div>
+
+    <p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/length#vw">vw</a> is a viewport width unit.
+    Represents a percentage of the width of the viewport's initial containing block.<br>
+    1vw is 1% of the viewport width.<br>
+    For example, if the viewport width is 800px, then a value of 50vw on a property will be 400px.</p>
+<script>
+    const range = document.getElementById('range');
+    const viewportWidth = document.getElementById('viewport-width');
+    const viewportWidthDisplay = document.getElementById('viewport-width-display');
+
+    setWidth(range.value + 'vw');
+
+    range.addEventListener('input', () => {
+      setWidth(range.value + 'vw');
+    });
+
+    function setWidth(width) {
+        viewportWidth.style.width = width;
+        viewportWidthDisplay.textContent = width;
+    }
+</script>
+
+</body>
+</html>
