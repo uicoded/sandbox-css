@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tailwind Zigzag Bento Boxes 5.4 Tailwind</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'charcoal-black': '#232323',
+              'slate-gray': '#4a4a4a',
+              'hard-white': '#f6f6f6',
+              'soft-white': '#e6e6e6',
+              'royal-purple': '#ab63e8',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      /* Custom CSS for grid positioning that Tailwind doesn't have built-in */
+      .grid-row-1 { grid-row: 1; }
+      .grid-row-2 { grid-row: 2; }
+      .grid-row-3 { grid-row: 3; }
+      .grid-row-4 { grid-row: 4; }
+      .grid-row-5 { grid-row: 5; }
+      .grid-row-6 { grid-row: 6; }
+      .grid-row-7 { grid-row: 7; }
+      .grid-row-8 { grid-row: 8; }
+
+      .grid-col-1 { grid-column: 1; }
+      .grid-col-2 { grid-column: 2; }
+    </style>
+  </head>
+  <body class="m-0 p-5 bg-slate-gray text-soft-white font-sans">
+    <p class="text-lg mb-6">Tailwind version of zigzag bento boxes with proper pattern - no overlapping</p>
+
+    <main class="w-full max-w-6xl mx-auto mt-8 px-5 grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-8 items-start" role="main">
+      <!-- Box 1 - Odd (Left) -->
+      <article class="grid-col-1 grid-row-1 border-4 sm:border-t-4 sm:border-b-4 sm:border-r-4 sm:border-l-0 border-soft-white rounded-3xl sm:rounded-tr-3xl sm:rounded-br-3xl sm:rounded-tl-none sm:rounded-bl-none p-6 sm:p-8 text-hard-white text-lg font-bold text-center shadow-lg min-h-32 flex justify-center" aria-labelledby="box1-title">
+        <div class="flex flex-col items-center justify-center">
+          <h3 id="box1-title" class="text-lg sm:text-xl mb-3">Box 1</h3>
+          <p class="font-normal text-sm sm:text-base leading-relaxed">
+            Content for Box 1. <br>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Praesentium magni reiciendis voluptatem neque aperiam incidunt doloribus aliquid distinctio atque eius possimus reprehenderit ratione voluptates, officiis velit repellendus dolorum exercitationem at?
+          </p>
+        </div>
+      </article>
+
+      <!-- Box 2 - Even (Right) -->
+      <article class="grid-col-2 grid-row-2 border-4 sm:border-t-4 sm:border-b-4 sm:border-l-4 sm:border-r-0 border-soft-white rounded-3xl sm:rounded-tl-3xl sm:rounded-bl-3xl sm:rounded-tr-none sm:rounded-br-none p-6 sm:p-8 text-hard-white text-lg font-bold text-center shadow-lg min-h-32 flex justify-center" aria-labelledby="box2-title">
+        <div class="flex flex-col items-center justify-center">
+          <h3 id="box2-title" class="text-lg sm:text-xl mb-3">Box 2</h3>
+          <p class="font-normal text-sm sm:text-base leading-relaxed">
+            Content for Box 2. <br>
+            Praesentium magni reiciendis voluptatem neque aperiam incidunt doloribus aliquid distinctio atque eius possimus reprehenderit ratione voluptates, officiis velit repellendus dolorum exercitationem at?
+          </p>
+        </div>
+      </article>
+
+      <!-- Box 3 - Odd (Left) -->
+      <article class="grid-col-1 grid-row-3 border-4 sm:border-t-4 sm:border-b-4 sm:border-r-4 sm:border-l-0 border-soft-white rounded-3xl sm:rounded-tr-3xl sm:rounded-br-3xl sm:rounded-tl-none sm:rounded-bl-none p-6 sm:p-8 text-hard-white text-lg font-bold text-center shadow-lg min-h-32 flex justify-center" aria-labelledby="box3-title">
+        <div class="flex flex-col items-center justify-center">
+          <h3 id="box3-title" class="text-lg sm:text-xl mb-3">Box 3</h3>
+          <p class="font-normal text-sm sm:text-base leading-relaxed">
+            Content for Box 3. <br>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </p>
+        </div>
+      </article>
+
+      <!-- Box 4 - Even (Right) -->
+      <article class="grid-col-2 grid-row-4 border-4 sm:border-t-4 sm:border-b-4 sm:border-l-4 sm:border-r-0 border-soft-white rounded-3xl sm:rounded-tl-3xl sm:rounded-bl-3xl sm:rounded-tr-none sm:rounded-br-none p-6 sm:p-8 text-hard-white text-lg font-bold text-center shadow-lg min-h-32 flex justify-center" aria-labelledby="box4-title">
+        <div class="flex flex-col items-center justify-center">
+          <h3 id="box4-title" class="text-lg sm:text-xl mb-3">Box 4</h3>
+          <p class="font-normal text-sm sm:text-base leading-relaxed">
+            Content for Box 4. This demonstrates the scalability of the approach with Tailwind CSS.
+          </p>
+        </div>
+      </article>
+    </main>
+
+    <!-- Mobile responsive version -->
+    <style>
+      @media (max-width: 639px) {
+        .grid-col-1, .grid-col-2 {
+          grid-column: 1 !important;
+        }
+        .grid-row-1, .grid-row-2, .grid-row-3, .grid-row-4,
+        .grid-row-5, .grid-row-6, .grid-row-7, .grid-row-8 {
+          grid-row: auto !important;
+        }
+      }
+    </style>
+
+    <hr class="my-8 border-soft-white">
+
+    <div class="max-w-6xl mx-auto px-5">
+      <h2 class="text-2xl font-bold mb-4">Tailwind Implementation</h2>
+      <ul class="list-disc list-inside space-y-2 text-soft-white">
+        <li><strong>Custom color palette</strong>: Extended Tailwind config with design system colors</li>
+        <li><strong>Grid positioning</strong>: Custom CSS classes for grid-row and grid-column positioning</li>
+        <li><strong>Responsive design</strong>: Uses Tailwind's responsive utilities and custom media queries</li>
+        <li><strong>Utility-first approach</strong>: Leverages Tailwind's utility classes for spacing, borders, and layout</li>
+        <li><strong>Clean zigzag pattern</strong>: L-R-L-R without overlap using proper grid positioning</li>
+      </ul>
+    </div>
+  </body>
+</html>

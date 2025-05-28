@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tailwind Zigzag Bento Boxes 6 - Tailwind</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'charcoal-black': '#232323',
+              'slate-gray': '#4a4a4a',
+              'hard-white': '#f6f6f6',
+              'soft-white': '#e6e6e6',
+              'royal-purple': '#ab63e8',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      :root {
+        --bento-padding: 32px;
+      }
+
+      /* Exact positioning from 5.2 version */
+      .box-1 {
+        grid-column: 1;
+        grid-row: 1;
+      }
+
+      .box-2 {
+        grid-column: 2;
+        grid-row: 2;
+        top: calc(-2 * var(--bento-padding));
+      }
+
+      .box-3 {
+        grid-column: 1;
+        grid-row: 3;
+        top: calc(-4 * var(--bento-padding));
+      }
+
+      .box-4 {
+        grid-column: 2;
+        grid-row: 4;
+        top: calc(-6 * var(--bento-padding));
+      }
+
+      /* Mobile responsive reset */
+      @media (max-width: 650px) {
+        .box-1, .box-2, .box-3, .box-4 {
+          position: static !important;
+          grid-column: 1 !important;
+          top: auto !important;
+        }
+
+        .box-1 { grid-row: 1; }
+        .box-2 { grid-row: 2; }
+        .box-3 { grid-row: 3; }
+        .box-4 { grid-row: 4; }
+      }
+    </style>
+  </head>
+  <body class="m-0 p-5 bg-slate-gray text-soft-white font-sans">
+    <p class="text-lg mb-6">Tailwind conversion of 5.2 version - exact same overlapping pattern</p>
+
+    <main class="w-full max-w-6xl mx-auto mt-8 px-5 grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-8 items-start" role="main">
+      <!-- Box 1 -->
+      <article class="box-1 border-4 sm:border-t-4 sm:border-b-4 sm:border-r-4 sm:border-l-0 border-soft-white rounded-3xl sm:rounded-none sm:rounded-tr-3xl sm:rounded-br-3xl p-6 sm:p-8 text-hard-white text-lg font-bold text-center shadow-lg min-h-32 flex justify-center relative" aria-labelledby="box1-title">
+        <div class="flex flex-col items-center justify-center">
+          <h3 id="box1-title" class="text-lg sm:text-xl mb-3">Box 1</h3>
+          <p class="font-normal text-sm sm:text-base leading-relaxed">
+            Content for Box 1. <br>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Praesentium magni reiciendis voluptatem neque aperiam incidunt doloribus aliquid distinctio atque eius possimus reprehenderit ratione voluptates, officiis velit repellendus dolorum exercitationem at?
+          </p>
+        </div>
+      </article>
+
+      <!-- Box 2 -->
+      <article class="box-2 border-4 sm:border-t-4 sm:border-b-4 sm:border-l-4 sm:border-r-0 border-soft-white rounded-3xl sm:rounded-none sm:rounded-tl-3xl sm:rounded-bl-3xl p-6 sm:p-8 text-hard-white text-lg font-bold text-center shadow-lg min-h-32 flex justify-center relative" aria-labelledby="box2-title">
+        <div class="flex flex-col items-center justify-center">
+          <h3 id="box2-title" class="text-lg sm:text-xl mb-3">Box 2</h3>
+          <p class="font-normal text-sm sm:text-base leading-relaxed">
+            Content for Box 2. <br>
+            Praesentium magni reiciendis voluptatem neque aperiam incidunt doloribus aliquid distinctio atque eius possimus reprehenderit ratione voluptates, officiis velit repellendus dolorum exercitationem at?
+          </p>
+        </div>
+      </article>
+
+      <!-- Box 3 -->
+      <article class="box-3 border-4 sm:border-t-4 sm:border-b-4 sm:border-r-4 sm:border-l-0 border-soft-white rounded-3xl sm:rounded-none sm:rounded-tr-3xl sm:rounded-br-3xl p-6 sm:p-8 text-hard-white text-lg font-bold text-center shadow-lg min-h-32 flex justify-center relative" aria-labelledby="box3-title">
+        <div class="flex flex-col items-center justify-center">
+          <h3 id="box3-title" class="text-lg sm:text-xl mb-3">Box 3</h3>
+          <p class="font-normal text-sm sm:text-base leading-relaxed">
+            Content for Box 3. <br>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+        </div>
+      </article>
+
+      <!-- Box 4 -->
+      <article class="box-4 border-4 sm:border-t-4 sm:border-b-4 sm:border-l-4 sm:border-r-0 border-soft-white rounded-3xl sm:rounded-none sm:rounded-tl-3xl sm:rounded-bl-3xl p-6 sm:p-8 text-hard-white text-lg font-bold text-center shadow-lg min-h-32 flex justify-center relative" aria-labelledby="box4-title">
+        <div class="flex flex-col items-center justify-center">
+          <h3 id="box4-title" class="text-lg sm:text-xl mb-3">Box 4</h3>
+          <p class="font-normal text-sm sm:text-base leading-relaxed">
+            Content for Box 4. <br>
+            This demonstrates the scalability of the approach with Tailwind CSS.
+          </p>
+        </div>
+      </article>
+    </main>
+
+    <hr class="my-8 border-soft-white">
+
+    <div class="max-w-6xl mx-auto px-5">
+      <h2 class="text-2xl font-bold mb-4">5.2 Version Conversion</h2>
+      <p class="mb-4">Tailwind conversion maintaining exact positioning from 5.2 version</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <h3 class="text-lg font-semibold mb-2">Original CSS Positioning:</h3>
+          <ul class="list-disc list-inside space-y-1 text-sm">
+            <li>Box 1: grid-row: 1, no offset</li>
+            <li>Box 2: grid-row: 2, top: calc(-2 × 32px)</li>
+            <li>Box 3: grid-row: 3, top: calc(-4 × 32px)</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-2">Tailwind Classes Used:</h3>
+          <ul class="list-disc list-inside space-y-1 text-sm">
+            <li>Grid: grid grid-cols-2 gap-4</li>
+            <li>Borders: border-t-4 border-b-4 border-r-4/l-4</li>
+            <li>Radius: rounded-tr-3xl rounded-br-3xl</li>
+            <li>Positioning: relative with custom CSS top</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-6 p-4 bg-charcoal-black rounded-lg">
+        <h3 class="text-lg font-semibold mb-2">Key Features:</h3>
+        <ul class="list-disc list-inside space-y-1 text-sm text-royal-purple">
+          <li>Exact same overlapping pattern as 5.2 version</li>
+          <li>Content-driven height with min-height fallback</li>
+          <li>Responsive: stacks vertically on mobile with positioning reset</li>
+          <li>Custom CSS for precise top positioning using --bento-padding variable</li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
