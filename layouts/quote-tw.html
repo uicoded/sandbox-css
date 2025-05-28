@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonial Section</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'charcoal-black': '#232323',
+              'slate-gray': '#4a4a4a',
+              'hard-white': '#f6f6f6',
+              'soft-white': '#e6e6e6',
+              'royal-purple': '#ab63e8',
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="bg-charcoal-black min-h-screen flex items-center justify-center p-8">
+    <section class="max-w-2xl border-l-4 border-royal-purple pl-6">
+        <blockquote class="mb-8">
+            <p class="text-hard-white text-lg leading-relaxed italic">
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+            </p>
+        </blockquote>
+
+        <div class="flex items-center space-x-4">
+            <div class="w-16 h-16 bg-royal-purple rounded-full flex-shrink-0"></div>
+            <div>
+                <p class="text-hard-white text-xl font-medium not-italic block">Lorem Ipsum</p>
+                <p class="text-hard-white text-sm">Ucmoc al latio co cetera al more</p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
