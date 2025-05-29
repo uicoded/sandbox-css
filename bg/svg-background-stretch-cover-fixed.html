@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>SVG Background Stretch Paralax effect</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      body {
+        margin: 0;
+        font-family: 'Inter', sans-serif;
+      }
+
+      h2, p {
+          display: inline-block;
+      }
+
+      #box-1, #box-3 {
+        background: orange;
+        width: 100vw;
+        height: 50vh;
+      }
+      #box-2 {
+        background: url('footer-bg.svg') no-repeat center center fixed;
+        /*
+        background-image: url('footer-bg.svg')
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-attachment: fixed;
+        */
+        background-size: cover;
+        width: 100vw;
+        height: 50vh;
+        display: flex;           /* Related to text alignment */
+        flex-direction: column;  /* Align text vertically */
+        justify-content: center; /* Horizontal center for text */
+        align-items: center;     /* Vertical center for text */
+        color: white;
+        font-size: 2rem;
+      }
+    </style>
+<body>
+    <div id="box-1">box-1</div>
+    <div id="box-2">
+      <h3>SVG Background is fixed relative to the viewport (Parallax effect)</h3>
+      <p><code>background-attachment: fixed</code></p>
+      <h3>SVG Background size is scaled to fill the element (may crop based on element's aspect ratio)</h3>
+      <p><code>background-size: cover</code></p>
+    </div>
+    <div id="box-3">box-3</div>
+</html>
