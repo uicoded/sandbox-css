@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Two Boxes on Each Side</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      body {
+        margin: 10px;
+        font-family: Arial, sans-serif;
+      }
+      .flex-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        background-color: slategray;
+      }
+      .flex-item {
+        width: 250px;
+        height: 100px;
+        background-color: lightblue;
+        /* border: 2px solid #4a90e2; */
+        margin: 5px;
+        text-align: center;
+        line-height: 100px;
+      }
+    </style>
+<body>
+    <div class="flex-container">
+        <div class="flex-item">
+            1
+        </div>
+        <div class="flex-item">
+            2
+        </div>
+    </div>
+</body>
+</html>
