@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flexbox Demo</title>
+    <style>
+      body {
+        margin: 20px;
+        font-family: Arial, sans-serif;
+      }
+
+      .controls {
+        margin-bottom: 20px;
+        padding: 20px;
+        background-color: #f0f0f0;
+        border-radius: 8px;
+      }
+
+      .control-group {
+        display: inline-block;
+        margin-right: 30px;
+        margin-bottom: 15px;
+      }
+
+      .control-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+
+      .control-group select {
+        padding: 5px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+      }
+
+      .flex-container {
+        width: 100%;
+        height: 300px;
+        background-color: slategray;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: stretch;
+        padding: 10px;
+        box-sizing: border-box;
+      }
+
+      .flex-item {
+        background-color: lightblue;
+        /*border: 2px solid #4a90e2;*/
+        margin: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: #333;
+      }
+
+      .item1 {
+        width: 50px;
+        height: 50px;
+      }
+
+      .item2 {
+        width: 50px;
+        height: 75px;
+      }
+
+      .item3 {
+        width: 50px;
+        height: 100px;
+      }
+
+      .current-values {
+        margin-top: 15px;
+        padding: 15px;
+        background-color: #e8f4f8;
+        border-radius: 6px;
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Flexbox Interactive Demo</h1>
+
+    <div class="controls">
+      <div class="control-group">
+        <label for="flexDirection">flex-direction:</label>
+        <select id="flexDirection">
+          <option value="row">row</option>
+          <option value="row-reverse">row-reverse</option>
+          <option value="column">column</option>
+          <option value="column-reverse">column-reverse</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label for="justifyContent">justify-content:</label>
+        <select id="justifyContent">
+          <option value="flex-start">flex-start</option>
+          <option value="flex-end">flex-end</option>
+          <option value="center">center</option>
+          <option value="space-between">space-between</option>
+          <option value="space-around">space-around</option>
+          <option value="space-evenly">space-evenly</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label for="alignItems">align-items:</label>
+        <select id="alignItems">
+          <option value="stretch" selected>stretch</option>
+          <option value="flex-start">flex-start</option>
+          <option value="flex-end">flex-end</option>
+          <option value="center">center</option>
+          <option value="baseline">baseline</option>
+        </select>
+      </div>
+
+      <div class="current-values">
+        <strong>Current CSS:</strong><br />
+        <span id="currentCSS"
+          >display: flex; flex-direction: row; justify-content: flex-start; align-items: stretch;</span
+        >
+      </div>
+    </div>
+
+    <div class="flex-container" id="flexContainer">
+      <div class="flex-item item1">1</div>
+      <div class="flex-item item2">2</div>
+      <div class="flex-item item3">3</div>
+    </div>
+
+    <section>
+      <h2>Help</h2>
+      <ul>
+        <li>justify — to position something along the primary axis.</li>
+        <li>align — to position something along the cross axis.</li>
+        <li>content — a group of “stuff” that can be distributed.</li>
+        <li>items — single items that can be positioned individually.</li>
+      </ul>
+    </section>
+
+    <script>
+      const flexContainer = document.getElementById("flexContainer");
+      const flexDirectionSelect = document.getElementById("flexDirection");
+      const justifyContentSelect = document.getElementById("justifyContent");
+      const alignItemsSelect = document.getElementById("alignItems");
+      const currentCSSSpan = document.getElementById("currentCSS");
+
+      function updateFlexbox() {
+        const flexDirection = flexDirectionSelect.value;
+        const justifyContent = justifyContentSelect.value;
+        const alignItems = alignItemsSelect.value;
+
+        flexContainer.style.flexDirection = flexDirection;
+        flexContainer.style.justifyContent = justifyContent;
+        flexContainer.style.alignItems = alignItems;
+
+        currentCSSSpan.textContent = `display: flex; flex-direction: ${flexDirection}; justify-content: ${justifyContent}; align-items: ${alignItems};`;
+      }
+
+      flexDirectionSelect.addEventListener("change", updateFlexbox);
+      justifyContentSelect.addEventListener("change", updateFlexbox);
+      alignItemsSelect.addEventListener("change", updateFlexbox);
+
+      // Initialize
+      updateFlexbox();
+    </script>
+  </body>
+</html>
