@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grid Template Columns</title>
+    <style>
+      .container {
+        display: grid;
+        /* Makes 3 colums with equal size.  If the .box has 300px width: it will be just that */
+        /* grid-template-columns: repeat(3, 1fr); */
+        /* Same written as this (for learning) */
+        /* grid-template-columns: 1fr repeat(2, 1fr); */
+
+        /* If the .box has 300px width: Basically eliminates the gap */
+        /* grid-template-columns: repeat(3, 300px); */
+
+        /* If the .box has 300px width: It will over lap */
+        /* grid-template-columns: repeat(3, 100px); */
+
+        /* auto-fill
+
+        If the grid container has a definite or maximal size in the relevant axis,
+        then the number of repetitions is the largest possible positive integer that does not cause the grid
+        to overflow its grid container.
+
+        auto-fit
+
+        Behaves the same as auto-fill, except that after placing the grid items any empty repeated tracks are collapsed.
+
+        If the box has 300px width set the gaps seems not to work..
+        */
+        grid-template-columns: repeat(auto-fit, 300px);
+
+        gap: 12px;
+        background-color: slategray;
+        padding: 12px;
+        font-size: 25px;
+        font-weight: 300;
+        margin-right: 400px; /* When there is not enough space for the container, the children will protrude */
+      }
+
+      .box {
+        /* */
+        width: 300px;
+        height: 200px;
+        /* */
+        background-color: lightblue;
+        box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.14);
+        color: gray;
+        border-radius: 3px;
+        padding: 1em;
+        text-align: center;
+      }
+
+      /* spice */
+      body {
+        font-family: sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box">1</div>
+      <div class="box">2</div>
+      <div class="box">3</div>
+      <div class="box">4</div>
+      <div class="box">5</div>
+    </div>
+    <p>
+      <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns"
+        ><code>grid-template-columns</code></a
+      >
+    </p>
+    <p>
+      <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/repeat"><code>repeat()</code></a>
+    </p>
+  </body>
+</html>
