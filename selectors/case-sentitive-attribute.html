@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Case sensitive attribute selector</title>
+    <style>
+      [data-type="primary" s] {
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Case sensitive attribute selector</h1>
+    <div data-type="primary">Match ✅</div>
+    <div data-type="Primary">No match ❌</div>
+    <div data-type="PRIMARY">No match ❌</div>
+    <div data-type="primary-button">No match ❌</div>
+    <p><a href="https://drafts.csswg.org/selectors-4/#attribute-case">Case-sensitivity w3c</a></p>
+    <hr />
+    <p>Does not seem to work in Chrome</p>
+  </body>
+</html>
