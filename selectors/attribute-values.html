@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Case sensitive attribute selector</title>
+    <style>
+      a {
+        color: blue;
+      }
+
+      /* Internal links, beginning with "#" */
+      a[href^="#"] {
+        background-color: silver;
+      }
+
+      /* Links with "example" anywhere in the URL */
+      a[href*="something"]::after {
+        content: ' → [href*="something"] ';
+        color: green;
+      }
+
+      /* Links with "insensitive" anywhere in the URL,
+        regardless of capitalization */
+      a[href*="insensitive" i]::after {
+        content: ' → [href*="insensitive" i]';
+        color: green;
+      }
+
+      /* Links with "cAsE" anywhere in the URL,
+      with matching capitalization */
+      a[href*="SenSitive" s]::after {
+        content: ' → [href*="SenSitive" s]';
+        color: green;
+      }
+
+      /* Links that end in ".org" */
+      a[href$=".org"] {
+        text-decoration: underline wavy;
+      }
+
+      /* Links that start with "https://" and end in ".org" */
+      a[href^="https://"][href$=".org"]::after
+      {
+        content: ' → [href^="https://"][href$=".org"]';
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Attribute values</h1>
+    <ul>
+      <li><a href="#InSensitive">#InSensitive</a></li>
+      <li><a href="#SenSitive">#SenSitive</a></li>
+      <li><a href="http://something.com">http://something.com</a></li>
+      <li><a href="https://example.org">https://example.org</a></li>
+    </ul>
+  </body>
+</html>
