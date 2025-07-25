@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Technical CSS Turn Unit Examples</title>
+    <link rel="stylesheet" href="../../reset/web.dev/webdev.css" />
+    <style>
+      .example {
+        margin-bottom: 40px;
+        border: 1px solid var(--color-mid);
+        padding: 20px;
+      }
+
+      .example h2 {
+        color: var(--color-mid-dark);
+        margin-top: 0;
+        font-size: 1.2em;
+      }
+
+      .demo {
+        padding: 15px;
+        margin: 15px 0;
+        border: 1px solid var(--color-stroke);
+        background: var(--color-off-white);
+      }
+
+      code {
+        display: block;
+        padding: 1em 2em;
+      }
+
+      /* Example 1: Animation */
+      .rotate-element {
+        width: 50px;
+        height: 50px;
+        background: #666;
+        margin: 10px;
+        display: inline-block;
+      }
+
+      .rotate-90 {
+        animation: rotate90 2s linear; /* infinitive */
+      }
+      .rotate-180 {
+        animation: rotate180 2s linear;
+      }
+      .rotate-360 {
+        animation: rotate360 2s linear;
+      }
+
+      @keyframes rotate90 {
+        to {
+          transform: rotate(0.25turn);
+        }
+      }
+
+      @keyframes rotate180 {
+        to {
+          transform: rotate(0.5turn);
+        }
+      }
+
+      @keyframes rotate360 {
+        to {
+          transform: rotate(1turn);
+        }
+      }
+
+      /* Example 2: Conic Gradient Colors */
+      .gradient-demo {
+        width: 100px;
+        height: 100px;
+        display: inline-block;
+        margin: 10px;
+        border: 1px solid #ccc;
+      }
+
+      .gradient-quarter {
+        background: conic-gradient(from 0turn, red 0.25turn, blue 0.25turn);
+      }
+
+      .gradient-thirds {
+        background: conic-gradient(from 0turn, red 0.33turn, green 0.33turn 0.66turn, blue 0.66turn);
+      }
+
+      .gradient-precise {
+        background: conic-gradient(from 0.125turn, #000 0.25turn, #fff 0.25turn 0.75turn, #000 0.75turn);
+      }
+
+      /* Example 3: Transform Functions */
+      .transform-demo {
+        width: 40px;
+        height: 40px;
+        background: #333;
+        margin: 20px;
+        display: inline-block;
+      }
+
+      .transform-static {
+        transform: rotate(0.125turn);
+      }
+      .transform-combined {
+        transform: rotate(0.25turn) scale(1.2) translateX(20px);
+      }
+      .transform-3d {
+        transform: rotateX(0.25turn) rotateY(0.125turn);
+      }
+
+      /* Example 4: CSS Variables with Turn */
+      .variable-demo {
+        --rotation: 0.1turn;
+        --color-stop: 0.3turn;
+        width: 80px;
+        height: 80px;
+        background: conic-gradient(from var(--rotation), red var(--color-stop), blue var(--color-stop));
+        transform: rotate(var(--rotation));
+        margin: 10px;
+        display: inline-block;
+        transition: transform 0.3s ease;
+      }
+
+      .variable-demo:hover {
+        --rotation: 0.5turn;
+        transform: rotate(var(--rotation));
+      }
+
+      /* Example 5: Hue Rotation Filter */
+      .filter-demo {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(45deg, red, blue);
+        margin: 10px;
+        display: inline-block;
+      }
+
+      .hue-0 {
+        filter: hue-rotate(0turn);
+      }
+      .hue-quarter {
+        filter: hue-rotate(0.25turn);
+      }
+      .hue-half {
+        filter: hue-rotate(0.5turn);
+      }
+      .hue-full {
+        filter: hue-rotate(1turn);
+      }
+
+      .technical-note {
+        background: #f9f9f9;
+        border-left: 4px solid #666;
+        padding: 10px;
+        margin: 15px 0;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="wrapper">
+        <h1>Technical CSS Turn Unit Examples</h1>
+
+        <div class="example">
+          <h2>1. Animation Property with Turn Values</h2>
+          <div class="demo">
+            <div class="rotate-element rotate-90"></div>
+            <div class="rotate-element rotate-180"></div>
+            <div class="rotate-element rotate-360"></div>
+          </div>
+          <pre><code>
+@keyframes rotate90 {
+    to { transform: rotate(0.25turn); }  /* 90 degrees */
+}
+
+@keyframes rotate180 {
+    to { transform: rotate(0.5turn); }   /* 180 degrees */
+}
+
+@keyframes rotate360 {
+    to { transform: rotate(1turn); }     /* 360 degrees */
+}</code></pre>
+          <div class="technical-note">
+            <strong>Technical use:</strong> Turn units in animations provide exact rotation control. 0.25turn = 90°,
+            0.5turn = 180°, 1turn = 360°.
+          </div>
+        </div>
+
+        <div class="example">
+          <h2>2. Conic Gradient Color Stops with Turn Units</h2>
+          <div class="demo">
+            <div class="gradient-demo gradient-quarter"></div>
+            <div class="gradient-demo gradient-thirds"></div>
+            <div class="gradient-demo gradient-precise"></div>
+          </div>
+          <pre><code>
+/* Quarter split */
+background: conic-gradient(from 0turn, red 0.25turn, blue 0.25turn);
+
+/* Three equal sections */
+background: conic-gradient(from 0turn,
+    red 0.33turn,
+    green 0.33turn 0.66turn,
+    blue 0.66turn);
+
+/* Precise positioning with offset start */
+background: conic-gradient(from 0.125turn,
+    #000 0.25turn,
+    #fff 0.25turn 0.75turn,
+    #000 0.75turn);</code></pre>
+          <div class="technical-note">
+            <strong>Technical use:</strong> Turn units in conic gradients allow precise angular color stops. More
+            intuitive than degrees for circular divisions.
+          </div>
+        </div>
+
+        <div class="example">
+          <h2>3. Transform Functions with Turn Precision</h2>
+          <div class="demo">
+            <div class="transform-demo transform-static"></div>
+            <div class="transform-demo transform-combined"></div>
+            <div class="transform-demo transform-3d"></div>
+          </div>
+          <pre><code>
+/* Static rotation */
+.element { transform: rotate(0.125turn); }  /* 45 degrees */
+
+/* Combined transforms */
+.element { transform: rotate(0.25turn) scale(1.2) translateX(20px); }
+
+/* 3D rotations */
+.element { transform: rotateX(0.25turn) rotateY(0.125turn); }</code></pre>
+          <div class="technical-note">
+            <strong>Technical use:</strong> Turn units work with all rotation transform functions: rotate(), rotateX(),
+            rotateY(), rotateZ(), rotate3d().
+          </div>
+        </div>
+
+        <div class="example">
+          <h2>4. CSS Custom Properties (Variables) with Turn Values</h2>
+          <div class="demo">
+            <div class="variable-demo"></div>
+            <span style="font-size: 12px; color: #666">(hover to see change)</span>
+          </div>
+          <pre><code>
+.element {
+    --rotation: 0.1turn;
+    --color-stop: 0.3turn;
+
+    background: conic-gradient(from var(--rotation),
+        red var(--color-stop),
+        blue var(--color-stop));
+    transform: rotate(var(--rotation));
+    transition: transform 0.3s ease;
+}
+
+.element:hover {
+    --rotation: 0.5turn;
+}</code></pre>
+          <div class="technical-note">
+            <strong>Technical use:</strong> Turn values can be stored in CSS variables for dynamic theming and
+            consistent rotation values across components.
+          </div>
+        </div>
+
+        <div class="example">
+          <h2>5. Filter Hue-Rotate with Turn Units</h2>
+          <div class="demo">
+            <div class="filter-demo hue-0"></div>
+            <div class="filter-demo hue-quarter"></div>
+            <div class="filter-demo hue-half"></div>
+            <div class="filter-demo hue-full"></div>
+          </div>
+          <pre><code>
+.original { filter: hue-rotate(0turn); }      /* No change */
+.quarter  { filter: hue-rotate(0.25turn); }   /* 90° hue shift */
+.half     { filter: hue-rotate(0.5turn); }    /* 180° hue shift */
+.full     { filter: hue-rotate(1turn); }      /* 360° = back to original */</code></pre>
+          <div class="technical-note">
+            <strong>Technical use:</strong> Hue-rotate filter accepts turn units for color wheel rotations. Useful for
+            theme variations and color accessibility adjustments.
+          </div>
+        </div>
+
+        <div style="border-top: 2px solid #ccc; padding-top: 20px; margin-top: 40px">
+          <h3>Turn Unit Technical Reference</h3>
+          <pre><code>
+/* Conversion Reference */
+0turn     = 0deg      = 0rad       = 0grad
+0.25turn  = 90deg     = π/2 rad    = 100grad
+0.5turn   = 180deg    = π rad      = 200grad
+0.75turn  = 270deg    = 3π/2 rad   = 300grad
+1turn     = 360deg    = 2π rad     = 400grad
+
+/* Supported Properties */
+- transform: rotate(), rotateX(), rotateY(), rotateZ(), rotate3d()
+- background: conic-gradient()
+- filter: hue-rotate()
+- Custom properties (CSS variables)
+- Animation keyframes</code></pre>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

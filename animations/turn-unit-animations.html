@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animating with turn unit</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        margin: 0;
+        padding: 20px;
+        min-height: 100vh;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 40px;
+        font-size: 2.5em;
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .example {
+        margin-bottom: 60px;
+        padding: 30px;
+        border-radius: 15px;
+        background: #f8f9fa;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+      }
+
+      .example h2 {
+        color: #495057;
+        margin-bottom: 20px;
+        font-size: 1.8em;
+      }
+
+      .demo-area {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 200px;
+        background: white;
+        border-radius: 10px;
+        margin: 20px 0;
+        border: 2px solid #e9ecef;
+      }
+
+      /* Example 1: Basic Rotation */
+      .rotating-square {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+        border-radius: 10px;
+        animation: basicRotate 3s linear infinite;
+        box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+      }
+
+      @keyframes basicRotate {
+        from {
+          transform: rotate(0turn);
+        }
+        to {
+          transform: rotate(1turn);
+        }
+      }
+
+      /* Example 2: Multi-turn Rotation with Scaling */
+      .spinning-gear {
+        width: 100px;
+        height: 100px;
+        background: linear-gradient(45deg, #4834d4, #686de0);
+        border-radius: 50%;
+        position: relative;
+        animation: multiTurnSpin 4s ease-in-out infinite;
+        box-shadow: 0 8px 20px rgba(72, 52, 212, 0.3);
+      }
+
+      .spinning-gear::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 60%;
+        height: 60%;
+        background: white;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .spinning-gear::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 20%;
+        height: 20%;
+        background: #4834d4;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      @keyframes multiTurnSpin {
+        0% {
+          transform: rotate(0turn) scale(1);
+        }
+        50% {
+          transform: rotate(2.5turn) scale(1.2);
+        }
+        100% {
+          transform: rotate(5turn) scale(1);
+        }
+      }
+
+      /* Example 3: Clock Animation */
+      .clock {
+        width: 120px;
+        height: 120px;
+        border: 4px solid #2d3436;
+        border-radius: 50%;
+        position: relative;
+        background: white;
+        box-shadow: 0 10px 25px rgba(45, 52, 70, 0.2);
+      }
+
+      .clock-hour {
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        width: 3px;
+        height: 30%;
+        background: #2d3436;
+        transform-origin: bottom center;
+        transform: translateX(-50%) rotate(0.25turn);
+        animation: hourHand 12s linear infinite;
+        border-radius: 2px;
+      }
+
+      .clock-minute {
+        position: absolute;
+        top: 10%;
+        left: 50%;
+        width: 2px;
+        height: 40%;
+        background: #636e72;
+        transform-origin: bottom center;
+        transform: translateX(-50%) rotate(0turn);
+        animation: minuteHand 1s linear infinite;
+        border-radius: 1px;
+      }
+
+      .clock-center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 8px;
+        height: 8px;
+        background: #e17055;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      @keyframes hourHand {
+        from {
+          transform: translateX(-50%) rotate(0.25turn);
+        }
+        to {
+          transform: translateX(-50%) rotate(1.25turn);
+        }
+      }
+
+      @keyframes minuteHand {
+        from {
+          transform: translateX(-50%) rotate(0turn);
+        }
+        to {
+          transform: translateX(-50%) rotate(1turn);
+        }
+      }
+
+      .code-block {
+        background: #2d3748;
+        color: #e2e8f0;
+        padding: 20px;
+        border-radius: 8px;
+        font-family: "Courier New", monospace;
+        font-size: 14px;
+        overflow-x: auto;
+        margin-top: 15px;
+      }
+
+      .highlight {
+        color: #68d391;
+        font-weight: bold;
+      }
+
+      .description {
+        color: #666;
+        line-height: 1.6;
+        margin-bottom: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>CSS Turn Unit Examples</h1>
+
+      <div class="example">
+        <h2>1. Basic Single Turn Rotation</h2>
+        <p class="description">
+          A simple square that completes exactly one full rotation (1 turn = 360°) continuously.
+        </p>
+        <div class="demo-area">
+          <div class="rotating-square"></div>
+        </div>
+        <div class="code-block">
+          @keyframes basicRotate { from { transform: rotate(<span class="highlight">0turn</span>); } to { transform:
+          rotate(<span class="highlight">1turn</span>); } } .rotating-square { animation: basicRotate 3s linear
+          infinite; }
+        </div>
+      </div>
+
+      <div class="example">
+        <h2>2. Multi-Turn Rotation with Scaling</h2>
+        <p class="description">
+          A gear-like element that rotates 5 full turns while scaling up and down, demonstrating fractional and multiple
+          turn values.
+        </p>
+        <div class="demo-area">
+          <div class="spinning-gear"></div>
+        </div>
+        <div class="code-block">
+          @keyframes multiTurnSpin { 0% { transform: rotate(<span class="highlight">0turn</span>) scale(1); } 50% {
+          transform: rotate(<span class="highlight">2.5turn</span>) scale(1.2); } 100% { transform: rotate(<span
+            class="highlight"
+            >5turn</span
+          >) scale(1); } } .spinning-gear { animation: multiTurnSpin 4s ease-in-out infinite; }
+        </div>
+      </div>
+
+      <div class="example">
+        <h2>3. Clock Animation with Different Turn Speeds</h2>
+        <p class="description">
+          A functional clock where the minute hand completes 1 turn per second, and the hour hand completes 1 turn in 12
+          seconds, using fractional turn values for precise positioning.
+        </p>
+        <div class="demo-area">
+          <div class="clock">
+            <div class="clock-hour"></div>
+            <div class="clock-minute"></div>
+            <div class="clock-center"></div>
+          </div>
+        </div>
+        <div class="code-block">
+          /* Hour hand starts at 3 o'clock position */ @keyframes hourHand { from { transform: translateX(-50%)
+          rotate(<span class="highlight">0.25turn</span>); } to { transform: translateX(-50%) rotate(<span
+            class="highlight"
+            >1.25turn</span
+          >); } } /* Minute hand completes full rotation */ @keyframes minuteHand { from { transform: translateX(-50%)
+          rotate(<span class="highlight">0turn</span>); } to { transform: translateX(-50%) rotate(<span
+            class="highlight"
+            >1turn</span
+          >); } }
+        </div>
+      </div>
+
+      <div style="background: #e3f2fd; padding: 20px; border-radius: 10px; margin-top: 40px">
+        <h3 style="color: #1565c0; margin-top: 0">About the Turn Unit</h3>
+        <p style="color: #333; margin-bottom: 0">
+          The <strong>turn</strong> unit represents complete rotations where: <br />• 1 turn = 360 degrees = 2π radians
+          = 400 gradians <br />• 0.5 turn = 180 degrees (half rotation) <br />• 0.25 turn = 90 degrees (quarter
+          rotation) <br />• 2 turn = 720 degrees (two full rotations)
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
