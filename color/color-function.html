@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Relative Color Steps</title>
+    <link rel="stylesheet" href="../reset/web.dev/webdev.css" />
+    <style>
+      .swatch {
+        padding: 0.5rem;
+        border: 1px solid var(--color-stroke);
+      }
+
+      .swatch__sample {
+        height: 120px;
+        border: 1px solid var(--color-stroke);
+        margin-bottom: 1rem;
+      }
+
+      .auto-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size, 14rem), 1fr));
+        gap: 1rem;
+        padding: 0;
+      }
+
+      li + li {
+        margin: 0;
+      }
+
+      .swatch {
+        display: grid;
+        code {
+          justify-self: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="wrapper">
+        <article class="flow">
+          <h1>sRGB colors with the <code>color()</code> function</h1>
+          <p>
+            <pre><code>color(colorspace c1 c2 c3[ / A])</code></pre>
+          </p>
+          <p>
+            The CSS
+            <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color"><code>color()</code></a>
+            function lets you choose a color in a specific color space. The first argument is the color space to use,
+            which defines the options for the following channels. Like <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/rgb"><code>rgb()</code></a>, you can set the alpha channel
+            by setting a number between 0 and 1, or a percentage, after a /.
+          </p>
+          <div class="callout">
+            <p>
+              A color specified with the <code>rgb()</code> function can also be specified with the same percentage
+              channel values using <code>color(srgb)</code>, although the values go from 0 to 1, rather than 0 to 100%.
+              The alpha channel seems to be supported with '/' (4th value did not work)
+            </p>
+          </div>
+          <ul class="auto-grid" role="list">
+            <li class="swatch">
+              <div class="swatch__sample" style="background: rgb(183 21 64)" aria-hidden="true"></div>
+              <code>rgb(183 21 64)</code>
+            </li>
+            <li class="swatch">
+              <div class="swatch__sample" style="background: rgb(72% 8% 25%)" aria-hidden="true"></div>
+              <code>rgb(72% 8% 25%)</code>
+            </li>
+            <li class="swatch">
+              <div class="swatch__sample" style="background: color(srgb 0.72 0.08 0.25)" aria-hidden="true"></div>
+              <code>color(srgb 0.72 .08 .25)</code>
+            </li>
+            <li class="swatch">
+              <div class="swatch__sample" style="background: color(srgb 0.72 0.08 0.25 / 0.5)" aria-hidden="true"></div>
+              <code>color(srgb 0.72 .08 .25 / 0.5)</code>
+            </li>
+          </ul>
+        </article>
+      </div>
+    </main>
+  </body>
+</html>
