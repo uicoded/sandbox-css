@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Relative Color Steps</title>
+    <link rel="stylesheet" href="../../reset/web.dev/webdev.css" />
+    <style>
+      body {
+        --color-primary: #3740ff; /* Added missing fallback */
+        --color-base: var(--input, var(--color-primary));
+
+        /*
+         --color-l1: oklch(
+          from var(--input, var(--color-primary))  // Use this color as base
+          calc(l + 0.05)                           // Lighten it slightly
+          c                                        // Keep original chroma
+          h                                        // Keep original hue
+        );
+        */
+
+        --color-l1: oklch(from var(--input, var(--color-primary)) calc(l + 0.05) c h);
+        --color-l2: oklch(from var(--input, var(--color-primary)) calc(l + 0.1) c h);
+        --color-l3: oklch(from var(--input, var(--color-primary)) calc(l + 0.15) c h);
+        --color-l4: oklch(from var(--input, var(--color-primary)) calc(l + 0.2) c h);
+        --color-d1: oklch(from var(--input, var(--color-primary)) calc(l - 0.1) c h);
+        --color-d2: oklch(from var(--input, var(--color-primary)) calc(l - 0.2) c h);
+        --color-d3: oklch(from var(--input, var(--color-primary)) calc(l - 0.3) c h);
+        --color-d4: oklch(from var(--input, var(--color-primary)) calc(l - 0.4) c h);
+        --color-d5: oklch(from var(--input, var(--color-primary)) calc(l - 0.5) c h);
+        --color-d6: oklch(from var(--input, var(--color-primary)) calc(l - 0.6) c h);
+        --color-alternate: oklch(from var(--input, var(--color-primary)) calc(l * 0.5) c calc(h + 60));
+
+        --gap-xs: 0.375rem;
+        --gap-sm: 1rem;
+        --gap-md: 2rem;
+        --gap-lg: 3rem;
+        --flow-space: var(--gap-sm);
+
+        color: var(--color-d6);
+        background-color: var(--color-l4);
+        line-height: 1;
+      }
+
+      h1 {
+        color: var(--color-d5);
+      }
+
+      /* main {
+        display: flex;
+        justify-content: center;
+      }
+
+      .wrapper {
+        width: 900px;
+      } */
+
+      aside {
+        --aside-border-color: oklch(from var(--color-base) l c h / 0.4);
+        border: 1px solid var(--aside-border-color);
+        margin-block: var(--gap-md);
+      }
+
+      aside h2 {
+        background: linear-gradient(to right, var(--color-l4) 0%, var(--color-l4) 40%, var(--color-base) 100%);
+        color: var(--color-alternate);
+        letter-spacing: 0.2em;
+        font-size: 1em;
+        max-width: 100%;
+        padding: var(--gap-xs) var(--gap-sm);
+        text-transform: uppercase;
+      }
+
+      aside p {
+        padding: var(--gap-sm);
+      }
+
+      a {
+        background: oklch(from var(--color-base) l c h / 0);
+        border: 3px solid transparent;
+        border-image: linear-gradient(
+          to bottom right,
+          var(--color-d4) 15%,
+          var(--color-d1) 45%,
+          var(--color-l1) 60%,
+          var(--color-l4) 100%
+        );
+        border-image-slice: 1;
+        color: var(--color-d4);
+        font-weight: bold;
+        display: inline-flex;
+        padding: var(--gap-xs) var(--gap-sm);
+        text-decoration: none;
+        transition: border-image 300ms, background 300ms, color 300ms;
+      }
+
+      a:hover,
+      a:focus {
+        background: oklch(from var(--color-base) l c h / 0.15);
+        border-image: linear-gradient(
+          to top left,
+          var(--color-d4) 15%,
+          var(--color-d1) 45%,
+          var(--color-l1) 60%,
+          var(--color-l4) 100%
+        );
+        border-image-slice: 1;
+        color: var(--color-d4);
+      }
+
+      .palette {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(1ch, 1fr));
+      }
+
+      .palette div {
+        background: oklch(from var(--input, var(--color-primary)) calc(var(--step) * 0.1) c h);
+        block-size: 4em;
+      }
+
+      /* Flow utility class */
+      .flow > * + * {
+        margin-top: var(--flow-space, 1rem);
+      }
+
+      /* Container queries */
+      [data-container~="primary"],
+      [data-container~="related"] {
+        container-type: inline-size;
+      }
+
+      .event {
+        display: grid;
+        grid-template:
+          "media" auto
+          "date" auto
+          "info" 1fr / 100%;
+      }
+
+      @container (width > 47rem) {
+        .event {
+          column-gap: var(--gap-md);
+          grid-template:
+            "media info" auto
+            "date info" min-content / minmax(auto, 24rem) 1fr;
+        }
+      }
+
+      .date {
+        align-items: center;
+        background: var(--date-bg, var(--color-l4));
+        display: grid;
+        grid-template: var(--date-grid-template, "month day year" auto / 1fr auto 1fr);
+        margin-block-end: var(--gap-sm);
+        padding: var(--gap-xs);
+      }
+
+      .month {
+        grid-area: month;
+        justify-self: end;
+        text-transform: uppercase;
+      }
+
+      .day {
+        grid-area: day;
+        font-size: 3rem;
+        font-weight: bold;
+        margin-inline: var(--day-margin-inline, 0.25rem);
+      }
+
+      .year {
+        grid-area: year;
+      }
+
+      /* Related Events Section */
+      .rel-title {
+        grid-column: 1 / -1;
+        padding-inline: var(--gap-sm);
+      }
+
+      [data-layout~="related"] {
+        display: grid;
+        gap: var(--gap-md);
+        grid-area: related;
+        grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+      }
+
+      [data-layout="media"] {
+        grid-area: media;
+      }
+      [data-layout="date"] {
+        grid-area: date;
+      }
+      [data-layout="info"] {
+        grid-area: info;
+      }
+      [data-layout="primary"] {
+        grid-area: primary;
+      }
+
+      section {
+        display: grid;
+        grid-template: "primary" 1fr / 1fr;
+        margin-inline: auto;
+        max-width: 96rem;
+      }
+
+      p {
+        line-height: 1.5;
+      }
+
+      img {
+        height: auto;
+        width: 100%;
+      }
+
+      .demo {
+        background: white;
+        padding: var(--gap-md);
+      }
+
+      /* Input styling */
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+      }
+
+      input[type="color"] {
+        width: 100px;
+        height: 40px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+    </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const colorInput = document.getElementById("input");
+        const root = document.documentElement;
+
+        colorInput.addEventListener("input", function () {
+          root.style.setProperty("--input", this.value);
+        });
+
+        // Set initial color
+        root.style.setProperty("--input", colorInput.value);
+      });
+    </script>
+  </head>
+  <body>
+    <main>
+      <div class="wrapper">
+        <div class="demo flow">
+          <label for="input">Input Color</label>
+          <input type="color" id="input" value="#3740ff" />
+          <div class="palette">
+            <div style="--step: 0"></div>
+            <div style="--step: 1"></div>
+            <div style="--step: 2"></div>
+            <div style="--step: 3"></div>
+            <div style="--step: 4"></div>
+            <div style="--step: 5"></div>
+            <div style="--step: 6"></div>
+            <div style="--step: 7"></div>
+            <div style="--step: 8"></div>
+            <div style="--step: 9"></div>
+            <div style="--step: 10"></div>
+          </div>
+          <section>
+            <div data-layout="primary" data-container="primary">
+              <article class="event featured">
+                <figure data-layout="media">
+                  <img src="https://placehold.co/350x200?text=*" alt="" />
+                </figure>
+
+                <div data-layout="date" class="date">
+                  <span class="month">June</span>
+                  <span class="day">23</span>
+                  <span class="year">2025</span>
+                </div>
+
+                <div data-layout="info" class="flow">
+                  <h1>This is a heading</h1>
+                  <p class="intro">
+                    <strong>Select a color to see how your color palette can be generated from one color.</strong>
+                    This text is designed to fill out the page layout so you can visualize how you can easily create a
+                    color theme.
+                  </p>
+                  <a class="custom-palette" href="#">This is a link</a>
+                </div>
+              </article>
+
+              <aside>
+                <h2>Important Notice:</h2>
+                <p>Relative Colors are extremely fun to use.</p>
+              </aside>
+
+              <div data-layout="related">
+                <h2 class="rel-title">Related events</h2>
+                <div data-container="related">
+                  <article class="event related">
+                    <figure data-layout="media">
+                      <img src="https://placehold.co/350x200?text=*" alt="" />
+                    </figure>
+
+                    <div data-layout="date" class="date">
+                      <span class="month">July</span>
+                      <span class="day">17</span>
+                      <span class="year">2025</span>
+                    </div>
+
+                    <div data-layout="info" class="flow">
+                      <h2>Heading for item</h2>
+                      <p class="intro">
+                        This text is designed to fill out the page layout so you can visualize how you can easily create
+                        a color theme.
+                      </p>
+                      <a class="custom-palette" href="#">This is a link</a>
+                    </div>
+                  </article>
+                </div>
+                <div data-container="related">
+                  <article class="event related">
+                    <figure data-layout="media">
+                      <img src="https://placehold.co/350x200?text=*" alt="" />
+                    </figure>
+
+                    <div data-layout="date" class="date">
+                      <span class="month">Aug</span>
+                      <span class="day">13</span>
+                      <span class="year">2025</span>
+                    </div>
+
+                    <div data-layout="info" class="flow">
+                      <h2>Heading for item</h2>
+                      <p class="intro">
+                        This text is designed to fill out the page layout so you can visualize how you can easily create
+                        a color theme.
+                      </p>
+                      <a class="custom-palette" href="#">This is a link</a>
+                    </div>
+                  </article>
+                </div>
+                <div data-container="related">
+                  <article class="event related">
+                    <figure data-layout="media">
+                      <img src="https://placehold.co/350x200?text=*" alt="" />
+                    </figure>
+
+                    <div data-layout="date" class="date">
+                      <span class="month">May</span>
+                      <span class="day">30</span>
+                      <span class="year">2026</span>
+                    </div>
+                    <div data-layout="info" class="flow">
+                      <h2>Heading for item</h2>
+                      <p class="intro">
+                        This text is designed to fill out the page layout so you can visualize how you can easily create
+                        a color theme.
+                      </p>
+                      <a class="custom-palette" href="#">This is a link</a>
+                    </div>
+                  </article>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
